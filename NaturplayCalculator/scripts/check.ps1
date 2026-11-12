@@ -25,8 +25,15 @@ try {
     if (-not $CoreOnly) {
         $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
         if (-not (Test-Path -LiteralPath $vswhere)) { throw 'Install Visual Studio 2026 with the Windows application development tooling and Windows SDK 10.0.26100.0.' }
-        $msbuild = & $vswhere -latest -version '[18.0,19.0)' -products '*' -requires Microsoft.Component.MSBuild -find 'MSBuild\**\Bin\MSBuild.exe' | Select-Object -First 1
-        if (-not $msbuild) { throw 'Visual Studio 2026 MSBuild was not found.' }
+        $installation = & $vswhere -latest -version '[18.0,19.0)' -products '*' -requires Microsoft.Component.MSBuild -property installationPath | Select-Object -First 1
+        if (-not $installation) { throw 'Visual Studio 2026 MSBuild was not found.' }
+        # The root Bin executable can run emulated on ARM64 and report x64 to
+        # Native AOT while the SDK resolves ARM64 packs. Use the native MSBuild host.
+        $hostArchitecture = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture.ToString()
+        $hostFolder = switch ($hostArchitecture) { 'Arm64' { 'arm64' } 'X64' { 'amd64' } default { '' } }
+        $msbuild = Join-Path $installation "MSBuild/Current/Bin/$hostFolder/MSBuild.exe"
+        if (-not (Test-Path -LiteralPath $msbuild)) { throw "Native $hostArchitecture MSBuild was not found: $msbuild" }
+        Write-Host "Building $Platform on $hostArchitecture with $msbuild"
         $sdk = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\Platforms\UAP\10.0.26100.0\Platform.xml'
         if (-not (Test-Path -LiteralPath $sdk)) { throw 'Install Windows SDK 10.0.26100.0.' }
         $locked = if ($UpdateLock) { 'false' } else { 'true' }
