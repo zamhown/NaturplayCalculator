@@ -328,3 +328,29 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Modern calculator build outputs
+.vs/
+artifacts/
+build-*.log
+**/bin/
+**/obj/
+**/AppPackages/
+**/BundleArtifacts/
+**/TestResults/
+**/*.csproj.user
+**/*.pfx
+**/*.p12
+**/*.appx
+**/*.appxbundle
+**/*.appxupload
+**/*.msix
+**/*.msixbundle
+**/*.pdb
+**/*.binlog
+**/_pkginfo.txt
+**/_language-*.xml
+**/_scale-*.xml
+**/Package.StoreAssociation.xml
+
+

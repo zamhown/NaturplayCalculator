@@ -1,0 +1,87 @@
+name: Calculator checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  workflow-validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate workflow syntax and expressions
+        shell: bash
+        run: |
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/actionlint.tar.gz" https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz
+          echo "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8  $RUNNER_TEMP/actionlint.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/actionlint.tar.gz" -C "$RUNNER_TEMP" actionlint
+          "$RUNNER_TEMP/actionlint" -color
+  portable:
+    name: Portable / ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025-vs2026]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.403'
+      - name: Test portable libraries
+        shell: pwsh
+        run: ./NaturplayCalculator/scripts/check.ps1 -CoreOnly -Configuration Release
+      - name: Publish and run native smoke on this OS
+        if: runner.os != 'Windows'
+        shell: pwsh
+        run: ./NaturplayCalculator/scripts/check-aot.ps1
+      - name: Upload portable test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portable-tests-${{ matrix.os }}
+          path: NaturplayCalculator/NaturplayCalculator.Tests/TestResults/*.trx
+  regression-and-winui:
+    name: WinUI / ${{ matrix.target.platform }} / ${{ matrix.configuration }}
+    runs-on: ${{ matrix.target.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+        target:
+          - { platform: x64, runner: windows-2025-vs2026 }
+          - { platform: x86, runner: windows-2025-vs2026 }
+          - { platform: ARM64, runner: windows-11-vs2026-arm }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.403'
+      - name: Test and build without signing credentials
+        shell: pwsh
+        run: ./NaturplayCalculator/scripts/check.ps1 -Configuration ${{ matrix.configuration }} -Platform ${{ matrix.target.platform }}
+      - name: Publish and execute native smoke for the target architecture
+        if: matrix.configuration == 'Release'
+        shell: pwsh
+        env:
+          TARGET_PLATFORM: ${{ matrix.target.platform }}
+        run: ./NaturplayCalculator/scripts/check-aot.ps1 -RuntimeIdentifier "win-$($env:TARGET_PLATFORM.ToLowerInvariant())"
+      - name: Upload tests and build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checks-${{ matrix.target.platform }}-${{ matrix.configuration }}
+          path: |
+            NaturplayCalculator/NaturplayCalculator.Tests/TestResults/*.trx
+            artifacts/checks/*.log
+      - name: Upload verified unsigned Native AOT package
+        if: success() && matrix.configuration == 'Release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: msix-${{ matrix.target.platform }}
+          path: NaturplayCalculator/NaturplayCalculator/AppPackages/**/*.msix
+          if-no-files-found: error
