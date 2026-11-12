@@ -2,7 +2,7 @@
 
 最新的 .NET 10 / WinUI 3 迁移记录见 [现代 .NET 迁移说明](modern-dotnet.md)。WinUI 3 已通过构建和可移植库回归；用户明确要求部署后，独立 Debug 包 1.13.96.1 已启动，观察到 9 + 9 = 18 和深色 Acrylic 背景模糊。完整交互、浅色材质、系统回退及 Release 启动尚未验证。下方 UWP、.NET Native / ARM、预览包启动记录均属于此前版本，不能作为 WinUI 3 的验收结果。
 
-2026-11-12 兼容性收尾：已清理 Cortana 的代码、三种语言文案和包内容；三种语言各 33 个直接资源引用检查通过。Debug / Release 各 629 项测试通过，x64 / x86 两种配置构建和 Release Native AOT MSIX 校验通过；ARM64 Debug 通过，Release 因本机缺 C++ ARM64 工具尚未通过。win-x64 / win-x86 核心 Native AOT 已实际执行，随后公共库锁定还原通过。扩展的 CI 已通过 actionlint 1.7.12，远端结果待记录。新的 x64 Release 包包含帮助窗口资源修复和 Cortana 清理，但尚未替换已部署的独立 Debug 包。
+2026-11-12 兼容性收尾：已清理 Cortana 的代码、三种语言文案和包内容；三种语言各 33 个直接资源引用检查通过。Debug / Release 各 629 项测试通过，本机 x64 / x86 两种配置构建和 Release Native AOT MSIX 校验通过；补装 C++ ARM64 工具后，ARM64 两种配置交叉构建及 Native AOT MSIX 校验也通过。win-x64 / win-x86 核心 Native AOT 已实际执行，随后公共库锁定还原通过。修复 ARM64 MSBuild 宿主选择后，[远端运行 43142987139](https://github.com/zamhown/NaturplayCalculator/actions/runs/43142987139) 的 10 项检查全部通过，包括三种 Windows 架构的两种配置、三系统可移植测试，以及五种 RID 的核心 AOT 实际执行。新的 x64 Release 包包含帮助窗口资源修复和 Cortana 清理，但尚未替换已部署的独立 Debug 包。Windows 10 与完整界面验收仍未完成。
 
 自动测试覆盖双模式共用语法、精确分数 / 根式、展开合并、符号矩阵、定义域条件、跨模式 Ans、v2→v3 历史迁移、自然排版输入索引，以及数学结果、区域格式、矩阵、统计、表达式快照、并发上下文、计算预算、JSON、会话格式和输入编辑。TeX 重构后加入独立解析 / 布局 / 编辑模型、源码映射、SVG 和跨模块依赖检查，原分组语义测试已迁移至实际 TeX 解析树。当前 WinUI 3 构建验证 .NET 10 与 Native AOT 兼容性，不能代替以下实际运行验证。
 

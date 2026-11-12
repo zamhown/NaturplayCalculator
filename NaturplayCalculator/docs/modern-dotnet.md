@@ -49,17 +49,19 @@ WinUI 3 的 AcrylicBrush 仅处理应用内部背景，不能直接替代 UWP �
 
 兼容性检查已扩展为以下矩阵，构建与运行结果分开记录：
 
-| 检查 | 2026-11-12 本地结果 | CI 配置 |
+| 检查 | 2026-11-12 本地结果 | 远端 CI 结果 |
 | --- | --- | --- |
-| 可移植测试 | Debug / Release 各 629 项通过 | Windows、Linux、macOS |
-| x64 WinUI 3 | Debug、Release Native AOT MSIX 通过 | Windows VS2026，两种配置 |
-| x86 WinUI 3 | Debug、Release Native AOT MSIX 通过 | Windows VS2026，两种配置 |
-| ARM64 WinUI 3 | Debug 交叉构建通过；Release 缺少本机 C++ ARM64 链接工具 | Windows 11 ARM64 VS2026，两种配置 |
-| 核心 Native AOT 执行 | win-x64、win-x86 通过 | 三种 Windows 架构、linux-x64、osx-arm64 |
-| 工作流校验 | actionlint 1.7.12 通过 | 每次执行 actionlint |
+| 可移植测试 | Debug / Release 各 629 项通过 | Windows、Linux、macOS 通过 |
+| x64 WinUI 3 | Debug、Release Native AOT MSIX 通过 | Debug / Release 通过 |
+| x86 WinUI 3 | Debug、Release Native AOT MSIX 通过 | Debug / Release 通过 |
+| ARM64 WinUI 3 | 补装 C++ ARM64 工具后，Debug / Release 交叉构建及 Native AOT MSIX 校验通过 | 原生 ARM64 runner 上 Debug / Release 通过 |
+| 核心 Native AOT 执行 | win-x64、win-x86 通过 | win-x64、win-x86、win-arm64、linux-x64、osx-arm64 通过 |
+| 工作流校验 | actionlint 1.7.12 通过 | actionlint 通过 |
 
 Release 包校验直接读取 EXE 的 PE machine 和 CLR header，避免仅凭文件名或清单认定架构正确；同时验证 Windows.Desktop / 10.0.19041.0、所需 WinUI 运行库及资源、能力声明，并拒绝残留 Commands.xml 和托管运行时。实际构建日志位于 artifacts/checks。AOT 冒烟使用独立 SmokeRuntimeIdentifier 属性，避免 -r 将平台传播到可移植库而破坏锁定还原。
 
-远端 CI 尚待执行。本机是 Windows 11 x64；包内的 Windows 10 最低版本校验不等于 Windows 10 实机运行验证，核心冒烟也不等于 WinUI 界面启动验证。Windows 10、ARM64 界面运行以及完整数据恢复、导出和输入法仍需按 [Windows 验收清单](verification.md) 实测。
+ARM64 首轮 Release 发现 root Bin 下的 MSBuild 在模拟环境中把宿主识别成 x64，与 SDK 选择的 ARM64 AOT 包不一致。check.ps1 现按实际操作系统架构选择 Bin/arm64 或 Bin/amd64 的原生 MSBuild；修复后完整矩阵通过。
+
+2026-11-12 [GitHub Actions 运行 43142987139](https://github.com/zamhown/NaturplayCalculator/actions/runs/43142987139) 的 10 个任务全部通过，对应代码提交 3b2b035；改动位于 [草稿 PR #1](https://github.com/zamhown/NaturplayCalculator/pull/1)。本机是 Windows 11 x64；包内的 Windows 10 最低版本校验不等于 Windows 10 实机运行验证，核心冒烟也不等于 WinUI 界面启动验证。Windows 10、ARM64 界面运行以及完整数据恢复、导出和输入法仍需按 [Windows 验收清单](verification.md) 实测。
 
 宿主错误写入自己的 LocalFolder/diagnostics.log，超过 256 KiB 后在下次写入前重置，不上传。MSIX 默认不签名，发布需正式签名和安装验证。
