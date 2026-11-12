@@ -5,6 +5,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: calculator-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 jobs:
   workflow-validation:
     runs-on: ubuntu-24.04
