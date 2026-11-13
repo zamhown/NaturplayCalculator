@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "NaturplayCalculator": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
