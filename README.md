@@ -2,6 +2,18 @@
 
 Windows WinUI 3 自然书写计算器，支持数值计算、符号计算、复数、矩阵、统计，以及 JSON / XML 树形查看器。
 
+[开发与验证](docs/development.md) · [文档导航](docs/README.md) · [贡献指南](CONTRIBUTING.md) · [安全报告](SECURITY.md)
+
+## 仓库结构
+
+- `ncalc/`：当前计算器解决方案、WinUI 应用、公共库与回归测试。
+- `scripts/`：统一构建、测试、工作流校验、MSIX 校验与隔离预览入口。
+- `docs/`：架构、开发流程与 Windows 人工验收文档。
+- `.github/`：CI、依赖更新和 Issue / PR 模板。
+- `math/`：[独立数学实验库](math/README.md)，使用 .NET 10 和独立 CI，不属于当前应用构建。
+
+首次贡献请先运行 `./scripts/check-repo.ps1` 和 `./scripts/test-scripts.ps1`。所有脚本要求 PowerShell 7.2+。
+
 ## 计算模式
 
 在菜单「计算设置」中切换「数值计算」和「符号计算」，勾选标记表示当前模式。默认数值模式保持双精度近似计算；符号模式使用精确有理数，保留分数、根式和未声明的变量。结果仍以自然书写方式排版，复制时使用可重新解析的表达式。
@@ -30,38 +42,40 @@ Windows WinUI 3 自然书写计算器，支持数值计算、符号计算、复�
 
 项目先按 [微软的 UWP 现代 .NET 迁移指南](https://learn.microsoft.com/zh-cn/windows/uwp/dotnet-native/modernize-uwp-apps-with-dotnet) 升级到 .NET 10，现已进一步迁移为 WinUI 3 / Windows App SDK 2.6.5。Windows 界面使用 `SystemBackdropElement` 和 `DesktopAcrylicController`，分别为显示区与按键区提供窗口背后的 Acrylic，沿用原主题色以及 0.6 / 0.9 的 TintOpacity。新旧渲染管线的最终外观尚待实机对比，不能据参数相同认定像素级一致。
 
-完整构建需要 Windows、Visual Studio 2026 的 Windows 应用开发工具与 C++ 桌面开发工具（Native AOT 链接器）、Windows SDK `10.0.26100.0` 和 .NET 10 SDK。本地验证版本为 SDK `10.0.403`；`global.json` 允许已安装的稳定 .NET 10 功能版本。最低系统版本为 Windows 10 `19041`。支持的应用架构为 `x64`、`x86`、`ARM64`，不再提供 ARM32。
+完整构建需要 Windows、Visual Studio 2026 的 Windows 应用开发工具与 C++ 桌面开发工具（Native AOT 链接器）、Windows SDK `10.0.26100.0` 和 .NET 10 SDK。本地验证版本为 SDK `10.0.403`；`global.json` 以 10.0.403 为基线，允许同一功能版本内的稳定补丁。最低系统版本为 Windows 10 `19041`。支持的应用架构为 `x64`、`x86`、`ARM64`，不再提供 ARM32。
 
 在本目录运行 PowerShell：
 
 ```powershell
 # 不依赖 Windows UI 的 .NET 10 回归测试（Windows / Linux / macOS）
-./NaturplayCalculator/scripts/check.ps1 -CoreOnly -Configuration Release
+./scripts/check.ps1 -CoreOnly -Configuration Release
 
 # 回归测试 + x64 WinUI 3 调试构建
-./NaturplayCalculator/scripts/check.ps1 -Configuration Debug
+./scripts/check.ps1 -Configuration Debug
 
 # 回归测试 + x64 Native AOT 编译和未签名 MSIX 打包
-./NaturplayCalculator/scripts/check.ps1 -Configuration Release
+./scripts/check.ps1 -Configuration Release
 
 # Windows x64：将可移植库原生编译后实际运行
-./NaturplayCalculator/scripts/check-aot.ps1
+./scripts/check-aot.ps1
 
 # 其他 Windows 架构：完整构建与包架构校验
-./NaturplayCalculator/scripts/check.ps1 -Configuration Release -Platform x86
-./NaturplayCalculator/scripts/check.ps1 -Configuration Release -Platform ARM64
+./scripts/check.ps1 -Configuration Release -Platform x86
+./scripts/check.ps1 -Configuration Release -Platform ARM64
 
 # 在可运行目标架构的机器上执行 Native AOT 冒烟
-./NaturplayCalculator/scripts/check-aot.ps1 -RuntimeIdentifier win-x86
+./scripts/check-aot.ps1 -RuntimeIdentifier win-x86
 ```
 
 脚本默认锁定依赖还原。修改依赖或 SDK 版本时使用 `-UpdateLock` 并检查 `packages.lock.json`。WinUI XAML 构建使用 Visual Studio 2026 MSBuild；纯 .NET 库和测试使用 `dotnet`。Release 启用 `GenerateAppxPackageOnBuild`，确保 MSIX 包装的是 Native AOT 输出，不能仅将普通 Build 目录打包。开发调试使用自包含 CoreCLR。
 
-CI 位于 `.github/workflows/ci.yml`，支持 push、pull request 和手动触发：actionlint 验证工作流；Windows、Linux、macOS 运行可移植回归；Windows x64 / x86 / ARM64 各运行 WinUI 3 Debug / Release 构建。Release 校验 MSIX 清单、实际 PE 架构、Native AOT、最低系统版本和能力声明，并上传未签名包与构建日志。三种 Windows 架构及 Linux / macOS 均执行对应平台的核心 Native AOT 冒烟；ARM64 Windows 使用原生 ARM64 runner。远端执行结果和实机限制见 [现代 .NET 迁移说明](NaturplayCalculator/docs/modern-dotnet.md)。
+CI 位于 `.github/workflows/ci.yml`：仓库与工作流检查、三系统可移植测试、脚本回归、Windows 三架构 Debug / Release 构建，以及对应平台 Native AOT 冒烟。`CI result` 汇总全部任务，日志和未签名包保留 14 天。入口、依赖更新和 GitHub 设置见 [开发与验证指南](docs/development.md)；历史迁移记录见 [现代 .NET 迁移说明](docs/modern-dotnet.md)。
 
 本机交叉编译 ARM64 Release 还需要 Visual Studio 的 `Microsoft.VisualStudio.Component.VC.Tools.ARM64` 组件。`check-aot.ps1 -PublishOnly` 可只生成目标程序，不将未执行的程序计为冒烟通过。不要并行运行共享同一工作目录的不同架构构建；CI 的矩阵任务各自使用独立 checkout。
 
 ## 代码边界
+
+计算器解决方案位于 `ncalc/NaturplayCalculator.sln`，下表路径均相对于 `ncalc/`。
 
 | 项目 / 目录 | 职责 |
 | --- | --- |
@@ -99,7 +113,7 @@ var result = new CalculationEngine().Evaluate("(a+b)c+bc", new CalculationOption
 
 统一结果访问 `Value`；`Answer` 仅为旧数值调用提供兼容，符号结果调用它会明确报错。扩展运算时在共享语法层登记一次，并在两个运算域中分别实现其数值和精确语义。公式链路为 `ExpressionTexFormatter → TeX → TexParser → TexLayoutEngine → TexFormulaView`；旧的 `MathLayout` 和 `MathElement` 已移除。TeX 的 `{}` 只组织语法，只有显式括号才显示，分数和根式不再添加多余括号。输入、步骤、结果和历史复用此通道。
 
-渲染器参考 KaTeX 的基线 / 字高 / 字深排版、MathJax 的输入和输出分层，以及 MathLive 的光标与选区模型，自行实现数学 TeX 子集，不依赖这些库的运行时。计算器通过源码映射支持直接点击公式编辑，独立的原始 TeX 编辑入口仍由宿主显式开启。协议、支持语法、API 和限制见 [TeX 渲染器设计](NaturplayCalculator/docs/tex-renderer.md)。
+渲染器参考 KaTeX 的基线 / 字高 / 字深排版、MathJax 的输入和输出分层，以及 MathLive 的光标与选区模型，自行实现数学 TeX 子集，不依赖这些库的运行时。计算器通过源码映射支持直接点击公式编辑，独立的原始 TeX 编辑入口仍由宿主显式开启。协议、支持语法、API 和限制见 [TeX 渲染器设计](docs/tex-renderer.md)。
 
 输入期间使用容错预览预测公式结构：未填的分子、分母、函数参数和矩阵单元格用系统文本选中底色标注；例如 `(2,2,,2` 显示为两行两列矩阵，右下角留空。数学输入不会因暂时不完整或超过原来的 512 字符阈值而回退为原始文本。实际求值仍只读取真实输入；预测不会自动填入数值或更改历史。
 
@@ -144,8 +158,10 @@ var result = new CalculationEngine().Evaluate("(a+b)c+bc", new CalculationOption
 
 ## 签名与发布
 
-普通构建默认不签名，不依赖本机证书。发布时通过外部证书存储或 CI 密钥配置提供签名信息；不要将 PFX / P12 放入源码。旧测试证书已从本地项目移至 `%LOCALAPPDATA%\NaturplayCalculator\Signing\Legacy-20261112`，重构前源码备份位于同级 `Backups\before-governance-20261112-015046`。
+普通构建默认不签名，不依赖本机证书。发布时从外部证书存储或独立发布环境提供签名材料，禁止将 PFX / P12 放入源码。
 
-本次工具进程中的 `%LOCALAPPDATA%\NaturplayCalculator` 写入被 MSIX 重定向。备份、签名材料与 QA 文件的真实物理目录位于 `%LOCALAPPDATA%\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\NaturplayCalculator`；向部署服务传递路径时，应使用真实物理路径。
+发布前完成 [Windows 界面与数据恢复验收](docs/verification.md)，并按 [开发与发布流程](docs/development.md) 签名和验证安装包。
 
-发布前还需完成 [Windows 界面与数据恢复验收](NaturplayCalculator/docs/verification.md)，并使用正式发布流程签名和验证安装包。
+## 许可证
+
+本项目使用 [GNU GPL v3](LICENSE)。

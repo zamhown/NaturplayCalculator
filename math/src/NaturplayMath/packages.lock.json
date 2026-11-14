@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "naturplaymath.core": {
+        "type": "Project"
+      },
+      "naturplaymath.numerics": {
+        "type": "Project",
+        "dependencies": {
+          "NaturplayMath.Core": "[1.0.0, )",
+          "NaturplayMath.Symbolics": "[1.0.0, )"
+        }
+      },
+      "naturplaymath.symbolics": {
+        "type": "Project",
+        "dependencies": {
+          "NaturplayMath.Core": "[1.0.0, )"
+        }
+      }
+    }
+  }
+}

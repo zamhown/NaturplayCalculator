@@ -1,0 +1,583 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>Naturplay Calculator</value>
+  </data>
+  <data name="button_close.Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="button_help.Content" xml:space="preserve">
+    <value> Help</value>
+  </data>
+  <data name="button_rate.Content" xml:space="preserve">
+    <value>RATE ME!</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>A simple tool to calculate mathematical expressions with output in natural handwriting style</value>
+  </data>
+  <data name="mathListView.Text" xml:space="preserve">
+    <value>Please enter an expression.</value>
+  </data>
+  <data name="menu_bangzhu.Text" xml:space="preserve">
+    <value>    Help</value>
+  </data>
+  <data name="menu_black.Text" xml:space="preserve">
+    <value>Dark theme</value>
+  </data>
+  <data name="menu_copy.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="menu_guanyu.Text" xml:space="preserve">
+    <value>    About</value>
+  </data>
+  <data name="menu_hudu.Text" xml:space="preserve">
+    <value>Radian mode</value>
+  </data>
+  <data name="menu_jiaodu.Text" xml:space="preserve">
+    <value>Degree mode</value>
+  </data>
+  <data name="menu_jietu.Text" xml:space="preserve">
+    <value>    Save the result as a picture</value>
+  </data>
+  <data name="menu_paste.Text" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="menu_tongshi.Text" xml:space="preserve">
+    <value>Calculate while inputting</value>
+  </data>
+  <data name="menu_white.Text" xml:space="preserve">
+    <value>Light theme</value>
+  </data>
+  <data name="msg_about" xml:space="preserve">
+    <value>This app is capable of carrying scientific calculations in different steps with output in handwriting style. It supports the basic matrix operations, statistical calculations, complex operation and so on.</value>
+  </data>
+  <data name="msg_about_copyright" xml:space="preserve">
+    <value>Copyright © 2015-2021 by Howard Zhang</value>
+  </data>
+  <data name="msg_about_tail" xml:space="preserve">
+    <value>If you like this App or have any questions about it, please go to the App store to rate it or write a feedback. Thank you!</value>
+  </data>
+  <data name="msg_about_version" xml:space="preserve">
+    <value>Version: </value>
+  </data>
+  <data name="msg_help_content_1" xml:space="preserve">
+    <value>Use brackets to represent matrix. Use comma to separate the elements in the row inside the matrix. Use two consecutive commas to separate each line. E.g. Enter (6,2,,3,1) represents a two-by-two matrix.</value>
+  </data>
+  <data name="msg_help_content_2_1" xml:space="preserve">
+    <value>1, nCr: combinations,  "A nCr B" represents the number of ways of obtaining an unordered subset of B elements from a set of A elements.</value>
+  </data>
+  <data name="msg_help_content_2_2" xml:space="preserve">
+    <value>2, nPr: permutations, "A nPr B" represents the number of ways of obtaining an ordered subset of B elements from a set of A elements.</value>
+  </data>
+  <data name="msg_help_content_2_3" xml:space="preserve">
+    <value>3, asin: arcsin, acos, atan empathy.</value>
+  </data>
+  <data name="msg_help_content_2_4" xml:space="preserve">
+    <value>4, Abs: for example "Abs n" represents the absolute value of n. It can also be used in matrix form, such as "Abs (6,2,,3,1)", which means a two-by-two determinant.</value>
+  </data>
+  <data name="msg_help_content_2_5" xml:space="preserve">
+    <value>5, T: used for matrices, such as "(6,2,,3,1)^T", which means the transpose of a matrix (6,2,,3,1).</value>
+  </data>
+  <data name="msg_help_content_2_6" xml:space="preserve">
+    <value>6, rank: used for matrices, such as "r(6,2,,3,1)", which means the rank of a matrix (6,2,,3,1).</value>
+  </data>
+  <data name="msg_help_content_2_7" xml:space="preserve">
+    <value>7, Ex: average of several numbers. Input combined with matrix form, for example, "e (1,2,3,4)" means average number of 1, 2, 3, 4.</value>
+  </data>
+  <data name="msg_help_content_3" xml:space="preserve">
+    <value>Use the i button to enter the imaginary unit. Complex numbers support arithmetic, modulus (Abs), and positive, negative, fractional or complex powers. Fractional and complex powers use the principal value. Matrix powers require an integer exponent; negative exponents require an invertible square matrix.</value>
+  </data>
+  <data name="msg_help_content_4" xml:space="preserve">
+    <value>You can enter a constant in the left corner of the keypad (with three butoons next to each other). Where e is the natural base, π is PI, I is the imaginary unit.</value>
+  </data>
+  <data name="msg_help_head" xml:space="preserve">
+    <value>This application operates in a similar way with the normal scientific calculator. However, there is something should be aware of:</value>
+  </data>
+  <data name="msg_help_topic_1" xml:space="preserve">
+    <value>First, how to enter a matrix:</value>
+  </data>
+  <data name="msg_help_topic_2" xml:space="preserve">
+    <value>Second, some operator descriptions:</value>
+  </data>
+  <data name="msg_help_topic_3" xml:space="preserve">
+    <value>Third, complex number calculation:</value>
+  </data>
+  <data name="msg_help_topic_4" xml:space="preserve">
+    <value>Fourth, constant input:</value>
+  </data>
+  <data name="msg_savefailed" xml:space="preserve">
+    <value>Save failed! Low on memory or other errors may occur.</value>
+  </data>
+  <data name="msg_savesuccess" xml:space="preserve">
+    <value>Successfully saved!</value>
+  </data>
+  <data name="error_0" xml:space="preserve">
+    <value>Please enter an expression!</value>
+  </data>
+  <data name="error_1" xml:space="preserve">
+    <value>Expression is not correct! Operators should not be followed by another operator, please add brackets</value>
+  </data>
+  <data name="error_10" xml:space="preserve">
+    <value>Expression is not correct! Check the operator's syntax is correct</value>
+  </data>
+  <data name="error_11" xml:space="preserve">
+    <value>Expression is not correct! Check to see if the number of elements in each row of the matrix is equal</value>
+  </data>
+  <data name="error_12" xml:space="preserve">
+    <value>Parentheses do not match! Redundant parentheses on the right, check the expression</value>
+  </data>
+  <data name="error_13" xml:space="preserve">
+    <value>You entered an expression that has an error, check your expression!</value>
+  </data>
+  <data name="error_14" xml:space="preserve">
+    <value>The negative even does not support double factorial!</value>
+  </data>
+  <data name="error_15" xml:space="preserve">
+    <value>You entered an expression that has the numerical error!</value>
+  </data>
+  <data name="error_16" xml:space="preserve">
+    <value>Matrix does not support this operation!</value>
+  </data>
+  <data name="error_17" xml:space="preserve">
+    <value>Non-real numbers are not supported this operation!</value>
+  </data>
+  <data name="error_18" xml:space="preserve">
+    <value>Negative numbers are not supported in this operation!</value>
+  </data>
+  <data name="error_19" xml:space="preserve">
+    <value>You entered an expression that has the numerical error! The format is incorrect</value>
+  </data>
+  <data name="error_2" xml:space="preserve">
+    <value>Expression is not correct! Constants should not be followed by numbers, please add an operator</value>
+  </data>
+  <data name="error_20" xml:space="preserve">
+    <value>The matrix is not square!</value>
+  </data>
+  <data name="error_21" xml:space="preserve">
+    <value>Illegal characters in the expression! Please check the expression</value>
+  </data>
+  <data name="error_22" xml:space="preserve">
+    <value>Formula error!</value>
+  </data>
+  <data name="error_23" xml:space="preserve">
+    <value>Matrix cannot add with numbers!</value>
+  </data>
+  <data name="error_24" xml:space="preserve">
+    <value>Matrix cannot subtract numbers!</value>
+  </data>
+  <data name="error_25" xml:space="preserve">
+    <value>Division of two matrics is not supported!</value>
+  </data>
+  <data name="error_26" xml:space="preserve">
+    <value>Divide matrix by number is not supported!</value>
+  </data>
+  <data name="error_27" xml:space="preserve">
+    <value>Multiplication of two matrics is not supported!</value>
+  </data>
+  <data name="error_28" xml:space="preserve">
+    <value>Non-real numbers cannot be used as exponent!</value>
+  </data>
+  <data name="error_29" xml:space="preserve">
+    <value>Index of matrix power error!</value>
+  </data>
+  <data name="error_3" xml:space="preserve">
+    <value>Expression is not correct! T is the matrix transpose mark which can only be the matrix exponential</value>
+  </data>
+  <data name="error_30" xml:space="preserve">
+    <value>Using matrix as exponent is not supported!</value>
+  </data>
+  <data name="error_31" xml:space="preserve">
+    <value>Two matrices are not the same type of matrix!</value>
+  </data>
+  <data name="error_32" xml:space="preserve">
+    <value>The number of columns of  Matrix A does not equal to the number of rows of Matrix B</value>
+  </data>
+  <data name="error_33" xml:space="preserve">
+    <value>The matrix is not invertible!</value>
+  </data>
+  <data name="error_34" xml:space="preserve">
+    <value>The matrix is not square!</value>
+  </data>
+  <data name="error_4" xml:space="preserve">
+    <value>Please enter full expressions!</value>
+  </data>
+  <data name="error_5" xml:space="preserve">
+    <value>Please enter full expressions and match brackets!</value>
+  </data>
+  <data name="error_6" xml:space="preserve">
+    <value>Parentheses do not match! Left parenthesis redundant, please check the expression</value>
+  </data>
+  <data name="error_7" xml:space="preserve">
+    <value>Please complete the next row of the matrix!</value>
+  </data>
+  <data name="error_8" xml:space="preserve">
+    <value>Please enter a complete matrix!</value>
+  </data>
+  <data name="error_9" xml:space="preserve">
+    <value>At least lack the number of elements is:</value>
+  </data>
+  <data name="save_button" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="save_name" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="save_type" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="tileText" xml:space="preserve">
+    <value>Last Result</value>
+  </data>
+  <data name="AppShortName" xml:space="preserve">
+    <value>NaturplayCalc</value>
+  </data>
+  <data name="button_donate0.Text" xml:space="preserve">
+    <value>Donate a little($1.99)</value>
+  </data>
+  <data name="button_donate1.Text" xml:space="preserve">
+    <value>Donate some($3.99)</value>
+  </data>
+  <data name="button_donate2.Text" xml:space="preserve">
+    <value>Donate a lot($7.99)</value>
+  </data>
+  <data name="menu_clickFirst.Text" xml:space="preserve">
+    <value>Mouse is preferred</value>
+  </data>
+  <data name="menu_landScapeMode.Text" xml:space="preserve">
+    <value>Landscape mode settings</value>
+  </data>
+  <data name="menu_tapFirst.Text" xml:space="preserve">
+    <value>Touch is preferred</value>
+  </data>
+  <data name="msg_supported" xml:space="preserve">
+    <value>Thank you for your support to the developer!</value>
+  </data>
+  <data name="msg_support_failed" xml:space="preserve">
+    <value>An unknown error occurred. Anyway, thank you for your support!</value>
+  </data>
+  <data name="command_executed" xml:space="preserve">
+    <value>The command has been executed!</value>
+  </data>
+  <data name="menu_liveTile.Text" xml:space="preserve">
+    <value>Open live tile</value>
+  </data>
+  <data name="menu_settings.Text" xml:space="preserve">
+    <value>    App settings</value>
+  </data>
+  <data name="menu_item_jietu.Text" xml:space="preserve">
+    <value>Save this line as a picture</value>
+  </data>
+  <data name="button_update.Content" xml:space="preserve">
+    <value>What's new</value>
+  </data>
+  <data name="button_donate.Content" xml:space="preserve">
+    <value>Buy Me a Coffee</value>
+  </data>
+  <data name="msg_update_content_1" xml:space="preserve">
+    <value>Suitable for Windows 11! The UX is fully upgraded.</value>
+  </data>
+  <data name="msg_update_content_2" xml:space="preserve">
+    <value>New Emoji UI mode has been added.</value>
+  </data>
+  <data name="msg_update_content_3" xml:space="preserve">
+    <value>The calculation accuracy is adjusted to solve the problem that large numbers cannot be calculated in some cases.</value>
+  </data>
+  <data name="msg_update_content_4" xml:space="preserve">
+    <value>Some other small features are supplemented, and some bugs are fixed.</value>
+  </data>
+  <data name="msg_update_content_5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="button_update_content_1" xml:space="preserve">
+    <value>What's new</value>
+  </data>
+  <data name="button_update_content_2" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="menu_directionKeys.Text" xml:space="preserve">
+    <value>Show direction keys</value>
+  </data>
+  <data name="menu_acrylic.Text" xml:space="preserve">
+    <value>Acrylic effect</value>
+  </data>
+  <data name="menu_showAO.Text" xml:space="preserve">
+    <value>Show advanced operators</value>
+  </data>
+  <data name="menu_key.Text" xml:space="preserve">
+    <value>    Button layout</value>
+  </data>
+  <data name="menu_leftHanded.Text" xml:space="preserve">
+    <value>Left-handed</value>
+  </data>
+  <data name="menu_rightHanded.Text" xml:space="preserve">
+    <value>Right-handed</value>
+  </data>
+  <data name="msg_past_update_content_1" xml:space="preserve">
+    <value>The always-keep-on-top (picture-in-picture) mode is supported.</value>
+  </data>
+  <data name="msg_past_update_title" xml:space="preserve">
+    <value>Past important updates</value>
+  </data>
+  <data name="msg_past_update_content_2" xml:space="preserve">
+    <value>The new matrix operator "rank" (matrix rank) and statistical operators "Cov", "ρ" (covariance and correlation coefficient) are newly supported.</value>
+  </data>
+  <data name="menu_folding_num.Text" xml:space="preserve">
+    <value>Fold decimal</value>
+  </data>
+  <data name="msg_update_content_6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="msg_help_content_2_10" xml:space="preserve">
+    <value>10, ρ: the correlation coefficient of random variables X and Y. Input combined with a matrix of 2 rows and N columns, such as "ρ(1,2,3,4,,5,6,7,8)", which means the correlation coefficient when X is 1, 2, 3, 4, and Y is 5, 6, 7, 8.</value>
+  </data>
+  <data name="msg_help_content_2_8" xml:space="preserve">
+    <value>8, Dx: number of several variance. Input combined with matrix form, for example "d (1,2,3,4)" means 1, 2, 3 and 4 of the variance.</value>
+  </data>
+  <data name="msg_help_content_2_9" xml:space="preserve">
+    <value>9, Cov: the covariance of random variables X and Y. Input combined with a matrix of 2 rows and N columns, such as "Cov(1,2,3,4,,5,6,7,8)", which means the covariance when X is 1, 2, 3, 4, and Y is 5, 6, 7, 8.</value>
+  </data>
+  <data name="msg_help_title" xml:space="preserve">
+    <value>HELP</value>
+  </data>
+  <data name="msg_update_content_7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="msg_saveHistoryFailed" xml:space="preserve">
+    <value>Tip: this expression is too long to be saved in history.</value>
+  </data>
+  <data name="menu_dashang.Text" xml:space="preserve">
+    <value>    Donate</value>
+  </data>
+  <data name="menu_clearLast.Text" xml:space="preserve">
+    <value>Empty input after launch</value>
+  </data>
+  <data name="msg_past_update_content_3" xml:space="preserve">
+    <value>For developers: this app can also parse JSON and XML, if you paste them in the input box and calculate.</value>
+  </data>
+  <data name="menu_copyExpressionAndAnswer.Text" xml:space="preserve">
+    <value>Copy(expression&amp;answer)</value>
+  </data>
+  <data name="button_close_content_1" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="button_close_content_2" xml:space="preserve">
+    <value> Get Started</value>
+  </data>
+  <data name="menu_show_calculation_steps.Text" xml:space="preserve">
+    <value>Show calculation steps</value>
+  </data>
+  <data name="menu_computing_settings.Text" xml:space="preserve">
+    <value>    Computing settings</value>
+  </data>
+  <data name="menu_fs.Text" xml:space="preserve">
+    <value>System theme</value>
+  </data>
+  <data name="menu_top.Text" xml:space="preserve">
+    <value>Always on top</value>
+  </data>
+  <data name="menu_emoji.Text" xml:space="preserve">
+    <value>Emoji UI 🤪</value>
+  </data>
+  <data name="teaching_tip_1_action" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="teaching_tip_1_content" xml:space="preserve">
+    <value>The new version of UI has been upgraded. Currently, the preview is in "bright color mode" and "Emoji UI mode". This configuration can be adjusted at the hamburger button on the left (≡). Click OK to restore the default style settings.</value>
+  </data>
+  <data name="teaching_tip_1_title" xml:space="preserve">
+    <value>Hello, there!</value>
+  </data>
+  <data name="menu_huifu.Text" xml:space="preserve">
+    <value>    Restore default settings</value>
+  </data>
+  <data name="msg_help_content_2_11" xml:space="preserve">
+    <value>11, Ans: represents the last calculation result, which is 0 by default.</value>
+  </data>
+  <data name="msg_restoreSettings" xml:space="preserve">
+    <value>The default settings have been restored, and restarting the application takes effect.</value>
+  </data>
+  <data name="tooltip_abs.Content" xml:space="preserve">
+    <value>Abs: for example "Abs n" represents the absolute value of n. It can also be used in matrix form, such as "Abs (6,2,,3,1)", which means a two-by-two determinant</value>
+  </data>
+  <data name="tooltip_ans.Content" xml:space="preserve">
+    <value>Ans: represents the last calculation result, which is 0 by default</value>
+  </data>
+  <data name="tooltip_arccos.Content" xml:space="preserve">
+    <value>arccos, cos⁻¹</value>
+  </data>
+  <data name="tooltip_arccosh.Content" xml:space="preserve">
+    <value>arccosh, cosh⁻¹</value>
+  </data>
+  <data name="tooltip_arcsin.Content" xml:space="preserve">
+    <value>arcsin, sin⁻¹</value>
+  </data>
+  <data name="tooltip_arcsinh.Content" xml:space="preserve">
+    <value>arcsinh, sinh⁻¹</value>
+  </data>
+  <data name="tooltip_arctan.Content" xml:space="preserve">
+    <value>arctan, tan⁻¹</value>
+  </data>
+  <data name="tooltip_arctanh.Content" xml:space="preserve">
+    <value>arctanh, tanh⁻¹</value>
+  </data>
+  <data name="tooltip_cov.Content" xml:space="preserve">
+    <value>Cov: the covariance of random variables X and Y. Input combined with a matrix of 2 rows and N columns, such as "Cov(1,2,3,4,,5,6,7,8)", which means the covariance when X is 1, 2, 3, 4, and Y is 5, 6, 7, 8</value>
+  </data>
+  <data name="tooltip_dx.Content" xml:space="preserve">
+    <value>Dx: number of several variance. Input combined with matrix form, for example "d (1,2,3,4)" means 1, 2, 3 and 4 of the variance</value>
+  </data>
+  <data name="tooltip_ex.Content" xml:space="preserve">
+    <value>Ex: average of several numbers. Input combined with matrix form, for example, "e (1,2,3,4)" means average number of 1, 2, 3, 4</value>
+  </data>
+  <data name="tooltip_ncr.Content" xml:space="preserve">
+    <value>nCr: combinations,  "A nCr B" represents the number of ways of obtaining an unordered subset of B elements from a set of A elements</value>
+  </data>
+  <data name="tooltip_npr.Content" xml:space="preserve">
+    <value>nPr: permutations, "A nPr B" represents the number of ways of obtaining an ordered subset of B elements from a set of A elements</value>
+  </data>
+  <data name="tooltip_rank.Content" xml:space="preserve">
+    <value>rank: used for matrices, such as "r(6,2,,3,1)", which means the rank of a matrix (6,2,,3,1)</value>
+  </data>
+  <data name="tooltip_rho.Content" xml:space="preserve">
+    <value>ρ: the correlation coefficient of random variables X and Y. Input combined with a matrix of 2 rows and N columns, such as "ρ(1,2,3,4,,5,6,7,8)", which means the correlation coefficient when X is 1, 2, 3, 4, and Y is 5, 6, 7, 8</value>
+  </data>
+  <data name="tooltip_t.Content" xml:space="preserve">
+    <value>T: used for matrices, such as "(6,2,,3,1)^T", which means the transpose of a matrix (6,2,,3,1)</value>
+  </data>
+  <data name="tooltip_yroot.Content" xml:space="preserve">
+    <value>yroot: "x yroot y" represents the y-th root of x</value>
+  </data>
+  <data name="calculation_limit" xml:space="preserve"><value>This expression exceeds the calculation limit. Simplify it and try again.</value></data>
+  <data name="integer_required" xml:space="preserve"><value>This operation requires integers in its supported range.</value></data>
+  <data name="non_finite" xml:space="preserve"><value>The result is undefined or outside the supported numeric range.</value></data>
+  <data name="division_by_zero" xml:space="preserve"><value>Division by zero is undefined.</value></data>
+  <data name="session_save_failed" xml:space="preserve"><value>History could not be saved. The current result is still available.</value></data>
+  <data name="session_recovered" xml:space="preserve"><value>Saved data could not be fully restored. Available backup or legacy entries were loaded; the original file has been preserved.</value></data>
+  <data name="legacy_history" xml:space="preserve"><value>This older entry has no saved answer or calculation context. Press = to recalculate using the current answer and angle mode.</value></data>
+  <data name="mode_numeric.Text" xml:space="preserve"><value>Numeric calculation</value></data>
+  <data name="mode_symbolic.Text" xml:space="preserve"><value>Symbolic calculation</value></data>
+  <data name="symbolic_conditions" xml:space="preserve"><value>Conditions:</value></data>
+  <data name="result_angles_radians" xml:space="preserve"><value>Trigonometric and inverse functions use radians</value></data>
+  <data name="invalid_expression" xml:space="preserve"><value>Invalid expression.</value></data>
+  <data name="unbound_variable" xml:space="preserve"><value>Variable {0} has no numeric value. Switch to symbolic calculation to simplify it.</value></data>
+  <data name="symbolic_numeric_required" xml:space="preserve"><value>This expression requires a numeric value.</value></data>
+  <data name="symbolic_help" xml:space="preserve"><value>Symbolic calculation: 1/3+1/6 = 1/2; sqrt(8) = 2sqrt(2); (a+b)c+bc = ac+2bc. Variables are real, single letters and do not need declarations. Adjacent letters multiply. pi, e, i, Ans and function names are reserved. Fractions and radicals remain exact. Switch to numeric calculation for a decimal approximation.</value></data>
+  <data name="display_tools_toggle" xml:space="preserve"><value>Show or hide display tools</value></data>
+</root>

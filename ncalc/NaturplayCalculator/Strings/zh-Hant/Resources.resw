@@ -1,0 +1,583 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>紙書科學計算機</value>
+  </data>
+  <data name="button_close.Content" xml:space="preserve">
+    <value>關閉窗口</value>
+  </data>
+  <data name="button_help.Content" xml:space="preserve">
+    <value> 幫助</value>
+  </data>
+  <data name="button_rate.Content" xml:space="preserve">
+    <value>給個評估！</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>用自然書寫形式計算數學運算式的簡潔工具</value>
+  </data>
+  <data name="mathListView.Text" xml:space="preserve">
+    <value>請輸入運算式。</value>
+  </data>
+  <data name="menu_bangzhu.Text" xml:space="preserve">
+    <value>    幫助</value>
+  </data>
+  <data name="menu_black.Text" xml:space="preserve">
+    <value>黑底白字</value>
+  </data>
+  <data name="menu_copy.Text" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="menu_guanyu.Text" xml:space="preserve">
+    <value>    關於</value>
+  </data>
+  <data name="menu_hudu.Text" xml:space="preserve">
+    <value>弧度制</value>
+  </data>
+  <data name="menu_jiaodu.Text" xml:space="preserve">
+    <value>角度制</value>
+  </data>
+  <data name="menu_jietu.Text" xml:space="preserve">
+    <value>    保存結果為圖片</value>
+  </data>
+  <data name="menu_paste.Text" xml:space="preserve">
+    <value>貼上</value>
+  </data>
+  <data name="menu_tongshi.Text" xml:space="preserve">
+    <value>輸入時計算答案</value>
+  </data>
+  <data name="menu_white.Text" xml:space="preserve">
+    <value>白底黑字</value>
+  </data>
+  <data name="msg_about" xml:space="preserve">
+    <value>本應用擅長以手寫體風格進行分步驟科學計算，並支援基本的矩陣運算、統計運算、複數運算。</value>
+  </data>
+  <data name="msg_about_copyright" xml:space="preserve">
+    <value>Copyright © 2015-2021 by Howard Zhang</value>
+  </data>
+  <data name="msg_about_tail" xml:space="preserve">
+    <value>如果覺得還不錯或者有問題，請移步應用商店來打分或評論回饋，謝謝！</value>
+  </data>
+  <data name="msg_about_version" xml:space="preserve">
+    <value>版本號：</value>
+  </data>
+  <data name="msg_help_content_1" xml:space="preserve">
+    <value>在計算機中用括弧表示矩陣，在括弧中以逗號(,)來分隔一行中的元素，並以連續兩個逗號(,,)來分隔每一行。 如輸入「(6,2,,3,1)」可以表示一個二乘二的矩陣。</value>
+  </data>
+  <data name="msg_help_content_2_1" xml:space="preserve">
+    <value>1、nCr：例如「A nCr B」表示n值為A，r值為B的組合數。</value>
+  </data>
+  <data name="msg_help_content_2_2" xml:space="preserve">
+    <value>2、nPr：例如「A nPr B」表示n值為A，r值為B的排列數。</value>
+  </data>
+  <data name="msg_help_content_2_3" xml:space="preserve">
+    <value>3、asin：表示arcsin，acos、atan同理。</value>
+  </data>
+  <data name="msg_help_content_2_4" xml:space="preserve">
+    <value>4、Abs：例如「Abs n」表示n的絕對值，也可用於矩陣形式，如「Abs(6,2,,3,1)」表示一個二乘二的行列式。</value>
+  </data>
+  <data name="msg_help_content_2_5" xml:space="preserve">
+    <value>5、T：用於矩陣，如「(6,2,,3,1)^T」表示矩陣(6,2,,3,1)的轉置。</value>
+  </data>
+  <data name="msg_help_content_2_6" xml:space="preserve">
+    <value>6、rank：用於矩陣，如「r(6,2,,3,1)」表示矩陣(6,2,,3,1)的秩。</value>
+  </data>
+  <data name="msg_help_content_2_7" xml:space="preserve">
+    <value>7、Ex：求幾個數的平均數。 輸入時與矩陣形式結合，例如「E(1,2,3,4)」即表示1、2、3、4的平均數。</value>
+  </data>
+  <data name="msg_help_content_3" xml:space="preserve">
+    <value>使用 i 按鈕輸入虛數單位。複數支援四則運算、取模（Abs），以及正整數、負整數、分數和複數指數冪。分數和複數指數冪取主值。矩陣冪的指數必須是整數；負指數要求矩陣為可逆方陣。</value>
+  </data>
+  <data name="msg_help_content_4" xml:space="preserve">
+    <value>在按鍵區的左上角有三個連在一起的按鈕，可以輸入常量。 其中e為自然底數，π為圓周率，i為虛數單位。</value>
+  </data>
+  <data name="msg_help_head" xml:space="preserve">
+    <value>本應用的使用方法大致與普通科學計算機相同，但有以下需要注意的地方：</value>
+  </data>
+  <data name="msg_help_topic_1" xml:space="preserve">
+    <value>一、如何輸入矩陣：</value>
+  </data>
+  <data name="msg_help_topic_2" xml:space="preserve">
+    <value>二、部分運算子說明：</value>
+  </data>
+  <data name="msg_help_topic_3" xml:space="preserve">
+    <value>三、複數計算：</value>
+  </data>
+  <data name="msg_help_topic_4" xml:space="preserve">
+    <value>四、常量輸入：</value>
+  </data>
+  <data name="msg_savefailed" xml:space="preserve">
+    <value>保存失敗！ 可能出現記憶體不足或者其他錯誤。</value>
+  </data>
+  <data name="msg_savesuccess" xml:space="preserve">
+    <value>保存成功！</value>
+  </data>
+  <data name="error_0" xml:space="preserve">
+    <value>請輸入運算式！</value>
+  </data>
+  <data name="error_1" xml:space="preserve">
+    <value>運算式有誤！ 在運算子之後不應緊接其他運算子，請添加括弧</value>
+  </data>
+  <data name="error_10" xml:space="preserve">
+    <value>運算式有誤！ 請檢查運算子的語法是否正確</value>
+  </data>
+  <data name="error_11" xml:space="preserve">
+    <value>運算式有誤！ 請檢查矩陣每行元素的個數是否相等</value>
+  </data>
+  <data name="error_12" xml:space="preserve">
+    <value>括弧不匹配！ 右括弧多餘，請檢查運算式</value>
+  </data>
+  <data name="error_13" xml:space="preserve">
+    <value>您輸入的運算式有錯誤，請檢查運算式！</value>
+  </data>
+  <data name="error_14" xml:space="preserve">
+    <value>負偶數不支援雙階乘！</value>
+  </data>
+  <data name="error_15" xml:space="preserve">
+    <value>您輸入的運算式有數值錯誤！</value>
+  </data>
+  <data name="error_16" xml:space="preserve">
+    <value>矩陣不支援此運算！</value>
+  </data>
+  <data name="error_17" xml:space="preserve">
+    <value>非實數不支援此運算！</value>
+  </data>
+  <data name="error_18" xml:space="preserve">
+    <value>負數不支援此運算！</value>
+  </data>
+  <data name="error_19" xml:space="preserve">
+    <value>您輸入的運算式有數值錯誤！ 數值的格式不對</value>
+  </data>
+  <data name="error_2" xml:space="preserve">
+    <value>運算式有誤！ 在常量之後不應緊接其他數位，請添加運算子</value>
+  </data>
+  <data name="error_20" xml:space="preserve">
+    <value>該矩陣不是方陣！</value>
+  </data>
+  <data name="error_21" xml:space="preserve">
+    <value>運算式有非法字元！ 請檢查運算式</value>
+  </data>
+  <data name="error_22" xml:space="preserve">
+    <value>算式錯誤！</value>
+  </data>
+  <data name="error_23" xml:space="preserve">
+    <value>矩陣不能與數位相加！</value>
+  </data>
+  <data name="error_24" xml:space="preserve">
+    <value>矩陣不能與數位相減！</value>
+  </data>
+  <data name="error_25" xml:space="preserve">
+    <value>不支援兩矩陣相除！</value>
+  </data>
+  <data name="error_26" xml:space="preserve">
+    <value>不支援數位除以矩陣！</value>
+  </data>
+  <data name="error_27" xml:space="preserve">
+    <value>不支援兩矩陣的乘方運算！</value>
+  </data>
+  <data name="error_28" xml:space="preserve">
+    <value>不支援指數為非實數的形式！</value>
+  </data>
+  <data name="error_29" xml:space="preserve">
+    <value>矩陣乘方指數錯誤！</value>
+  </data>
+  <data name="error_3" xml:space="preserve">
+    <value>運算式有誤！ T為矩陣轉置標記，只能單獨放在矩陣的指數位置</value>
+  </data>
+  <data name="error_30" xml:space="preserve">
+    <value>不支援以矩陣為指數的乘方運算！</value>
+  </data>
+  <data name="error_31" xml:space="preserve">
+    <value>兩個矩陣不是同型矩陣！</value>
+  </data>
+  <data name="error_32" xml:space="preserve">
+    <value>A矩陣的列數與B矩陣的行數不相等！</value>
+  </data>
+  <data name="error_33" xml:space="preserve">
+    <value>該矩陣不可逆！</value>
+  </data>
+  <data name="error_34" xml:space="preserve">
+    <value>該矩陣不是方陣！</value>
+  </data>
+  <data name="error_4" xml:space="preserve">
+    <value>請將運算式輸入完整！</value>
+  </data>
+  <data name="error_5" xml:space="preserve">
+    <value>請將運算式輸入完整並匹配括弧！</value>
+  </data>
+  <data name="error_6" xml:space="preserve">
+    <value>括弧不匹配！ 左括弧多餘，請檢查運算式</value>
+  </data>
+  <data name="error_7" xml:space="preserve">
+    <value>請將矩陣的下一行輸入完整！</value>
+  </data>
+  <data name="error_8" xml:space="preserve">
+    <value>請將矩陣輸入完整！</value>
+  </data>
+  <data name="error_9" xml:space="preserve">
+    <value>至少缺少的元素個數為:</value>
+  </data>
+  <data name="save_button" xml:space="preserve">
+    <value>儲存</value>
+  </data>
+  <data name="save_name" xml:space="preserve">
+    <value>計算結果</value>
+  </data>
+  <data name="save_type" xml:space="preserve">
+    <value>圖片</value>
+  </data>
+  <data name="tileText" xml:space="preserve">
+    <value>最後結果</value>
+  </data>
+  <data name="AppShortName" xml:space="preserve">
+    <value>紙書科學計算機</value>
+  </data>
+  <data name="button_donate0.Text" xml:space="preserve">
+    <value>捐助-小賞($1.99)</value>
+  </data>
+  <data name="button_donate1.Text" xml:space="preserve">
+    <value>捐助-中賞($3.99)</value>
+  </data>
+  <data name="button_donate2.Text" xml:space="preserve">
+    <value>捐助-大賞($7.99)</value>
+  </data>
+  <data name="menu_clickFirst.Text" xml:space="preserve">
+    <value>滑鼠優先</value>
+  </data>
+  <data name="menu_landScapeMode.Text" xml:space="preserve">
+    <value>橫屏設定</value>
+  </data>
+  <data name="menu_tapFirst.Text" xml:space="preserve">
+    <value>觸摸優先</value>
+  </data>
+  <data name="msg_supported" xml:space="preserve">
+    <value>謝謝你對開發者的支持！</value>
+  </data>
+  <data name="msg_support_failed" xml:space="preserve">
+    <value>出現未知錯誤，但還是謝謝你的支持！</value>
+  </data>
+  <data name="command_executed" xml:space="preserve">
+    <value>命令已執行！</value>
+  </data>
+  <data name="menu_liveTile.Text" xml:space="preserve">
+    <value>打開動態磁貼</value>
+  </data>
+  <data name="menu_settings.Text" xml:space="preserve">
+    <value>    應用設定</value>
+  </data>
+  <data name="menu_item_jietu.Text" xml:space="preserve">
+    <value>將此行保存為圖片</value>
+  </data>
+  <data name="button_update.Content" xml:space="preserve">
+    <value>更新說明</value>
+  </data>
+  <data name="button_donate.Content" xml:space="preserve">
+    <value>給作者買杯咖啡</value>
+  </data>
+  <data name="msg_update_content_1" xml:space="preserve">
+    <value>適配Windows 11，UI風格全面升級；</value>
+  </data>
+  <data name="msg_update_content_2" xml:space="preserve">
+    <value>新增Emoji UI模式；</value>
+  </data>
+  <data name="msg_update_content_3" xml:space="preserve">
+    <value>調整計算精度，解决了部分情况下無法計算大數的問題；</value>
+  </data>
+  <data name="msg_update_content_4" xml:space="preserve">
+    <value>添加了一些其他特性，並集中解决了一些Bug。</value>
+  </data>
+  <data name="msg_update_content_5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="button_update_content_1" xml:space="preserve">
+    <value>更新說明</value>
+  </data>
+  <data name="button_update_content_2" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="menu_directionKeys.Text" xml:space="preserve">
+    <value>顯示方向鍵</value>
+  </data>
+  <data name="menu_acrylic.Text" xml:space="preserve">
+    <value>亞克力效果</value>
+  </data>
+  <data name="menu_showAO.Text" xml:space="preserve">
+    <value>顯示高級運算子</value>
+  </data>
+  <data name="menu_key.Text" xml:space="preserve">
+    <value>    按鍵佈局</value>
+  </data>
+  <data name="menu_leftHanded.Text" xml:space="preserve">
+    <value>慣用左手</value>
+  </data>
+  <data name="menu_rightHanded.Text" xml:space="preserve">
+    <value>慣用右手</value>
+  </data>
+  <data name="msg_past_update_content_1" xml:space="preserve">
+    <value>支持視窗總在最前（畫中畫）模式；</value>
+  </data>
+  <data name="msg_past_update_title" xml:space="preserve">
+    <value>以往重要更新</value>
+  </data>
+  <data name="msg_past_update_content_2" xml:space="preserve">
+    <value>新增了矩陣運算子“rank”（求矩陣的秩）和統計運算子“Cov”、“ρ”（求協方差和相關係數）；</value>
+  </data>
+  <data name="menu_folding_num.Text" xml:space="preserve">
+    <value>折疊小數</value>
+  </data>
+  <data name="msg_update_content_6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="msg_help_content_2_10" xml:space="preserve">
+    <value>10、ρ：求隨機變數X、Y的相關係數。輸入時與2行n列的矩陣結合，例如「ρ(1,2,3,4,,5,6,7,8)」即表示X為1、2、3、4，Y為5、6、7、8時的相關係數。</value>
+  </data>
+  <data name="msg_help_content_2_8" xml:space="preserve">
+    <value>8、Dx：求幾個數的方差。 輸入時與矩陣形式結合，例如「D(1,2,3,4)」即表示1、2、3、4的方差。</value>
+  </data>
+  <data name="msg_help_content_2_9" xml:space="preserve">
+    <value>9、Cov：求隨機變數X、Y的協方差。輸入時與2行n列的矩陣結合，例如「Cov(1,2,3,4,,5,6,7,8)」即表示X為1、2、3、4，Y為5、6、7、8時的協方差。</value>
+  </data>
+  <data name="msg_help_title" xml:space="preserve">
+    <value>使用幫助</value>
+  </data>
+  <data name="msg_update_content_7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="msg_saveHistoryFailed" xml:space="preserve">
+    <value>提示：此運算式過長，將無法保存在歷史記錄中。</value>
+  </data>
+  <data name="menu_dashang.Text" xml:space="preserve">
+    <value>    打賞作者</value>
+  </data>
+  <data name="menu_clearLast.Text" xml:space="preserve">
+    <value>啟動後清空輸入</value>
+  </data>
+  <data name="msg_past_update_content_3" xml:space="preserve">
+    <value>針對開發者：如果在輸入框中粘貼JSON和XML程式碼並計算，就可以進行解析。</value>
+  </data>
+  <data name="menu_copyExpressionAndAnswer.Text" xml:space="preserve">
+    <value>複製算式和答案</value>
+  </data>
+  <data name="button_close_content_1" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="button_close_content_2" xml:space="preserve">
+    <value> 開始使用</value>
+  </data>
+  <data name="menu_show_calculation_steps.Text" xml:space="preserve">
+    <value>顯示計算步驟</value>
+  </data>
+  <data name="menu_computing_settings.Text" xml:space="preserve">
+    <value>    計算設定</value>
+  </data>
+  <data name="menu_fs.Text" xml:space="preserve">
+    <value>跟隨系統設置</value>
+  </data>
+  <data name="menu_top.Text" xml:space="preserve">
+    <value>視窗總在最前</value>
+  </data>
+  <data name="menu_emoji.Text" xml:space="preserve">
+    <value>Emoji UI 🤪</value>
+  </data>
+  <data name="teaching_tip_1_action" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="teaching_tip_1_content" xml:space="preserve">
+    <value>新版本的UI已得到陞級，當前預覽的是“亮色模式”和“Emoji UI模式”。這個配寘可在左側漢堡按鈕處（≡）調整。點擊確定即將恢復默認樣式設定。</value>
+  </data>
+  <data name="teaching_tip_1_title" xml:space="preserve">
+    <value>Hello, there!</value>
+  </data>
+  <data name="menu_huifu.Text" xml:space="preserve">
+    <value>    恢復默認設置</value>
+  </data>
+  <data name="msg_help_content_2_11" xml:space="preserve">
+    <value>11、Ans：代表上一次的計算結果，默認為0。</value>
+  </data>
+  <data name="msg_restoreSettings" xml:space="preserve">
+    <value>已恢復默認設置，重啓應用生效。</value>
+  </data>
+  <data name="tooltip_abs.Content" xml:space="preserve">
+    <value>Abs：例如「Abs n」表示n的絕對值，也可用於矩陣形式，如「Abs(6,2,,3,1)」表示一個二乘二的行列式</value>
+  </data>
+  <data name="tooltip_ans.Content" xml:space="preserve">
+    <value>Ans：代表上一次的計算結果，默認為0</value>
+  </data>
+  <data name="tooltip_arccos.Content" xml:space="preserve">
+    <value>arccos，cos⁻¹</value>
+  </data>
+  <data name="tooltip_arccosh.Content" xml:space="preserve">
+    <value>arccosh，cosh⁻¹</value>
+  </data>
+  <data name="tooltip_arcsin.Content" xml:space="preserve">
+    <value>arcsin，sin⁻¹</value>
+  </data>
+  <data name="tooltip_arcsinh.Content" xml:space="preserve">
+    <value>arcsinh，sinh⁻¹</value>
+  </data>
+  <data name="tooltip_arctan.Content" xml:space="preserve">
+    <value>arctan，tan⁻¹</value>
+  </data>
+  <data name="tooltip_arctanh.Content" xml:space="preserve">
+    <value>arctanh，tanh⁻¹</value>
+  </data>
+  <data name="tooltip_cov.Content" xml:space="preserve">
+    <value>Cov：求隨機變數X、Y的協方差。輸入時與2行n列的矩陣結合，例如「Cov(1,2,3,4,,5,6,7,8)」即表示X為1、2、3、4，Y為5、6、7、8時的協方差</value>
+  </data>
+  <data name="tooltip_dx.Content" xml:space="preserve">
+    <value>Dx：求幾個數的方差。 輸入時與矩陣形式結合，例如「D(1,2,3,4)」即表示1、2、3、4的方差</value>
+  </data>
+  <data name="tooltip_ex.Content" xml:space="preserve">
+    <value>Ex：求幾個數的平均數。 輸入時與矩陣形式結合，例如「E(1,2,3,4)」即表示1、2、3、4的平均數</value>
+  </data>
+  <data name="tooltip_ncr.Content" xml:space="preserve">
+    <value>nCr：例如「A nCr B」表示n值為A，r值為B的組合數</value>
+  </data>
+  <data name="tooltip_npr.Content" xml:space="preserve">
+    <value>nPr：例如「A nPr B」表示n值為A，r值為B的排列數</value>
+  </data>
+  <data name="tooltip_rank.Content" xml:space="preserve">
+    <value>rank：用於矩陣，如「r(6,2,,3,1)」表示矩陣(6,2,,3,1)的秩</value>
+  </data>
+  <data name="tooltip_rho.Content" xml:space="preserve">
+    <value>ρ：求隨機變數X、Y的相關係數。輸入時與2行n列的矩陣結合，例如「ρ(1,2,3,4,,5,6,7,8)」即表示X為1、2、3、4，Y為5、6、7、8時的相關係數</value>
+  </data>
+  <data name="tooltip_t.Content" xml:space="preserve">
+    <value>T：用於矩陣，如「(6,2,,3,1)^T」表示矩陣(6,2,,3,1)的轉置</value>
+  </data>
+  <data name="tooltip_yroot.Content" xml:space="preserve">
+    <value>yroot：例如「x yroot y」表示x的y次方根</value>
+  </data>
+  <data name="calculation_limit" xml:space="preserve"><value>運算式超過計算限制，請簡化後重試。</value></data>
+  <data name="integer_required" xml:space="preserve"><value>此運算要求參數為支援範圍內的整數。</value></data>
+  <data name="non_finite" xml:space="preserve"><value>結果未定義或超出支援的數值範圍。</value></data>
+  <data name="division_by_zero" xml:space="preserve"><value>除數不能為零。</value></data>
+  <data name="session_save_failed" xml:space="preserve"><value>歷史記錄儲存失敗，目前計算結果仍可使用。</value></data>
+  <data name="session_recovered" xml:space="preserve"><value>儲存的資料未能完整還原，已嘗試讀取備份或舊記錄；原始檔案已保留。</value></data>
+  <data name="legacy_history" xml:space="preserve"><value>這條舊記錄沒有儲存結果或計算上下文。按等號將使用目前 Ans 和角度模式重新計算。</value></data>
+  <data name="mode_numeric.Text" xml:space="preserve"><value>數值計算</value></data>
+  <data name="mode_symbolic.Text" xml:space="preserve"><value>符號計算</value></data>
+  <data name="symbolic_conditions" xml:space="preserve"><value>適用條件：</value></data>
+  <data name="result_angles_radians" xml:space="preserve"><value>三角函式及反函式：弧度制</value></data>
+  <data name="invalid_expression" xml:space="preserve"><value>運算式無效。</value></data>
+  <data name="unbound_variable" xml:space="preserve"><value>變數 {0} 未指定數值。請切換到符號計算模式進行化簡。</value></data>
+  <data name="symbolic_numeric_required" xml:space="preserve"><value>該運算式需要數值。</value></data>
+  <data name="symbolic_help" xml:space="preserve"><value>符號計算範例：1/3+1/6 = 1/2；sqrt(8) = 2√2；(a+b)c+bc = ac+2bc。變數預設是實數，使用單個字母，不需事先宣告；相鄰字母表示相乘。pi、e、i、Ans 和函式名稱為保留名稱。分數和根式保持精確值；切換到數值計算可求小數近似值。</value></data>
+  <data name="display_tools_toggle" xml:space="preserve"><value>展開或收起顯示區工具列</value></data>
+</root>

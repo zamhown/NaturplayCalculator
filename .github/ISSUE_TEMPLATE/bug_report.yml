@@ -1,0 +1,28 @@
+name: 缺陷报告
+description: 报告计算、界面、构建或数据恢复问题。
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 计算问题请提供原始表达式、数值/符号模式和 DEG/RAD。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期与实际行为
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 应用版本或提交、Windows 版本、CPU 架构；构建问题补充 SDK 和 Visual Studio 版本。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 截图与日志
+      description: 删除个人路径、历史记录、令牌和其他私人信息后再上传。
