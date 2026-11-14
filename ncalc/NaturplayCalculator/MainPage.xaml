@@ -1,0 +1,2147 @@
+<Page
+    x:Class="NaturplayCalculator.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NaturplayCalculator"
+    xmlns:input="using:NaturplayCalculator.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:newCtls="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged"
+    Name="page"
+    MinWidth="100" MinHeight="100" 
+    KeyDown="Page_KeyDown" 
+    Tapped="page_Tapped" 
+    PointerMoved="page_PointerMoved" 
+    Loaded="page_Loaded"
+    >
+    <!--
+    xmlns:svg="using:Mntone.SvgForXaml.UI.Xaml"
+    xmlns:xp="using:XP"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    -->
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/CalculatorControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Viewbox Name="viewbox" Stretch="Fill">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="CalculatorThemeStates">
+                <VisualState x:Name="CalculatorDark">
+                    <VisualState.Setters>
+                        <Setter Target="treeView.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="bbig.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="bsmall.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="mpre.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="mnext.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="mdelHis.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="tHisPtr.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="btop.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="bsetting.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="inputBox.Foreground" Value="{StaticResource CalculatorDarkForegroundBrush}"/>
+                        <Setter Target="originalListItem.Foreground" Value="{StaticResource CalculatorDarkSecondaryForegroundBrush}"/>
+                        <Setter Target="bsetting.Background" Value="{StaticResource CalculatorDarkSettingBackgroundBrush}"/>
+                        <Setter Target="bequal.Background" Value="{StaticResource CalculatorDarkEqualBackgroundBrush}"/>
+                        <Setter Target="inputRectangle.Fill" Value="{StaticResource CalculatorDarkInputBackgroundBrush}"/>
+                        <Setter Target="constButtons.Background" Value="{StaticResource CalculatorDarkConstantBackgroundBrush}"/>
+                        <Setter Target="constButtons2.Background" Value="{StaticResource CalculatorDarkConstantBackgroundBrush}"/>
+                        <Setter Target="blr.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="blr2.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="bshift.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons1.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons1_1.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons2.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons2_1.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="rightButtons.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="bigleftButtons.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="specialLeftBlock1.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="specialLeftBlock2.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="specialRightBlock2.Background" Value="{StaticResource CalculatorDarkOperatorBackgroundBrush}"/>
+                        <Setter Target="importantOprButtons.Background" Value="{StaticResource CalculatorDarkImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="upButtons.Background" Value="{StaticResource CalculatorDarkImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="downButtons.Background" Value="{StaticResource CalculatorDarkImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="specialRightBlock1.Background" Value="{StaticResource CalculatorDarkImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="specialLeftBlockBigPlace.BorderBrush" Value="{StaticResource CalculatorDarkTouchBorderBrush}"/>
+                        <Setter Target="smallnumButtons.BorderBrush" Value="{StaticResource CalculatorDarkTouchBorderBrush}"/>
+                        <Setter Target="listView.RequestedTheme" Value="Dark"/>
+                        <Setter Target="treeView.RequestedTheme" Value="Dark"/>
+                        <Setter Target="sviewer.RequestedTheme" Value="Dark"/>
+                        <Setter Target="inputBox.RequestedTheme" Value="Dark"/>
+                        <Setter Target="page.RequestedTheme" Value="Dark"/>
+                        <Setter Target="bequal.Foreground" Value="White"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CalculatorLight">
+                    <VisualState.Setters>
+                        <Setter Target="treeView.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="bbig.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="bsmall.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="mpre.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="mnext.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="mdelHis.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="tHisPtr.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="btop.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="bsetting.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="inputBox.Foreground" Value="{StaticResource CalculatorLightForegroundBrush}"/>
+                        <Setter Target="originalListItem.Foreground" Value="{StaticResource CalculatorLightSecondaryForegroundBrush}"/>
+                        <Setter Target="bsetting.Background" Value="{StaticResource CalculatorLightSettingBackgroundBrush}"/>
+                        <Setter Target="bequal.Background" Value="{StaticResource CalculatorLightEqualBackgroundBrush}"/>
+                        <Setter Target="inputRectangle.Fill" Value="{StaticResource CalculatorLightInputBackgroundBrush}"/>
+                        <Setter Target="constButtons.Background" Value="{StaticResource CalculatorLightConstantBackgroundBrush}"/>
+                        <Setter Target="constButtons2.Background" Value="{StaticResource CalculatorLightConstantBackgroundBrush}"/>
+                        <Setter Target="blr.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="blr2.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="bshift.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons1.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons1_1.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons2.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="leftButtons2_1.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="rightButtons.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="bigleftButtons.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="specialLeftBlock1.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="specialLeftBlock2.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="specialRightBlock2.Background" Value="{StaticResource CalculatorLightOperatorBackgroundBrush}"/>
+                        <Setter Target="importantOprButtons.Background" Value="{StaticResource CalculatorLightImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="upButtons.Background" Value="{StaticResource CalculatorLightImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="downButtons.Background" Value="{StaticResource CalculatorLightImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="specialRightBlock1.Background" Value="{StaticResource CalculatorLightImportantOperatorBackgroundBrush}"/>
+                        <Setter Target="specialLeftBlockBigPlace.BorderBrush" Value="{StaticResource CalculatorLightTouchBorderBrush}"/>
+                        <Setter Target="smallnumButtons.BorderBrush" Value="{StaticResource CalculatorLightTouchBorderBrush}"/>
+                        <Setter Target="listView.RequestedTheme" Value="Light"/>
+                        <Setter Target="treeView.RequestedTheme" Value="Light"/>
+                        <Setter Target="sviewer.RequestedTheme" Value="Light"/>
+                        <Setter Target="inputBox.RequestedTheme" Value="Light"/>
+                        <Setter Target="page.RequestedTheme" Value="Light"/>
+                        <Setter Target="bequal.Foreground" Value="White"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="OperatorStates">
+                <VisualState x:Name="PrimaryOperators">
+                    <VisualState.Setters>
+                        <Setter Target="shiftGlyph.Text" Value="⏷"/>
+                        <Setter Target="shiftGlyph_1.Text" Value="⏷"/>
+                        <Setter Target="leftButtons1.Visibility" Value="Visible"/>
+                        <Setter Target="leftButtons1_1.Visibility" Value="Visible"/>
+                        <Setter Target="leftButtons2.Visibility" Value="Collapsed"/>
+                        <Setter Target="leftButtons2_1.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="ShiftedOperators">
+                    <VisualState.Setters>
+                        <Setter Target="shiftGlyph.Text" Value="⏶"/>
+                        <Setter Target="shiftGlyph_1.Text" Value="⏶"/>
+                        <Setter Target="leftButtons1.Visibility" Value="Collapsed"/>
+                        <Setter Target="leftButtons1_1.Visibility" Value="Collapsed"/>
+                        <Setter Target="leftButtons2.Visibility" Value="Visible"/>
+                        <Setter Target="leftButtons2_1.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="ResultViewStates">
+                <VisualState x:Name="FormulaResults">
+                    <VisualState.Setters>
+                        <Setter Target="listView.Visibility" Value="Visible"/>
+                        <Setter Target="treeView.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DocumentResults">
+                    <VisualState.Setters>
+                        <Setter Target="listView.Visibility" Value="Collapsed"/>
+                        <Setter Target="treeView.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="DisplayToolsStates">
+                <VisualState x:Name="DisplayToolsHidden">
+                    <VisualState.Setters>
+                        <Setter Target="displayToolsRow.Height" Value="0"/>
+                        <Setter Target="toolgrid.Visibility" Value="Collapsed"/>
+                        <Setter Target="displayToolsToggle.IsChecked" Value="False"/>
+                        <Setter Target="displayToolsToggleIcon.Glyph" Value="&#xE70E;"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DisplayToolsVisible">
+                    <VisualState.Setters>
+                        <Setter Target="displayToolsRow.Height" Value="32"/>
+                        <Setter Target="toolgrid.Visibility" Value="Visible"/>
+                        <Setter Target="displayToolsToggle.IsChecked" Value="True"/>
+                        <Setter Target="displayToolsToggleIcon.Glyph" Value="&#xE70D;"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="InputPreferenceStates">
+                <VisualState x:Name="PointerInput">
+                    <VisualState.Setters>
+                        <Setter Target="specialLeftBlockBigPlace.BorderThickness" Value="0"/>
+                        <Setter Target="smallnumButtons.BorderThickness" Value="0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="TouchInput">
+                    <VisualState.Setters>
+                        <Setter Target="specialLeftBlockBigPlace.BorderThickness" Value="5"/>
+                        <Setter Target="smallnumButtons.BorderThickness" Value="5"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid Name="bigGrid" Width="1200" Height="780">
+            <Grid x:Name="bg1" Grid.ColumnSpan="3"></Grid>
+            <Grid x:Name="frame">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Resources>
+                    <ThemeShadow x:Name="SharedShadow1" />
+                </Grid.Resources>
+
+                <Grid x:Name="bigrightButtonsAreaShadow" Grid.Column="2" Shadow="{StaticResource SharedShadow1}" Translation="0,0,32">
+                    <!-- Z_Depth="2" CornerRadius="5" Margin="-10,-2,-10,-13" -->
+
+                    <Grid x:Name="bigrightButtonsArea">
+                        <Grid x:Name="bigrightButtons">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+
+                            <Grid x:Name="smallnumButtons"  Grid.Row="4" Grid.ColumnSpan="2" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="0*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b7s" Grid.Row="0" Grid.Column="0" Padding="2 0" Click="b7_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">7</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">7️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b8s" Grid.Row="0" Grid.Column="1" Padding="2 0" Click="b8_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">8</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">8️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b9s" Grid.Row="0" Grid.Column="2" Padding="2 0" Click="b9_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">9</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">9️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b4s" Grid.Row="1" Padding="2 0" Click="b4_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">4</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">4️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b5s" Grid.Column="1" Grid.Row="1" Padding="2 0" Click="b5_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">5</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">5️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b6s" Grid.Column="2" Padding="2 0" Grid.Row="1" Click="b6_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">6</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">6️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b1s" Grid.Row="2" Padding="2 0" Click="b1_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">1</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">1️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b2s" Grid.Column="1" Grid.Row="2" Padding="2 0" Click="b2_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">2</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">2️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b3s" Grid.Column="2" Padding="2 0" Grid.Row="2" Click="b3_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">3</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">3️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b0s" Grid.Column="1" Grid.Row="3" Padding="2 0" Click="b0_Click">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <TextBlock FontSize="32" FontFamily="Segoe UI" Margin="0 10">0</TextBlock>
+                                            <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 10">0️⃣</TextBlock>
+                                        </Grid>
+                                    </Viewbox>
+                                </Button>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdous" Content="," Grid.Column="0" Grid.Row="3" FontSize="36" Click="b000_Click" FontFamily="Consolas" />
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpoints" Content="." Grid.Column="2" Grid.Row="3" Click="bpoint_Click" FontSize="36" FontFamily="Consolas" />
+                                <Grid x:Name="bequalPlace2" Grid.Row="4" Grid.ColumnSpan="3">
+
+                                </Grid>
+                            </Grid>
+
+                            <Grid x:Name="specialRightBlockPlace1" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Grid x:Name="specialRightBlock1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid  Grid.Row="0" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bleft2" Click="bleft_Click" Grid.Column="0" Grid.Row="1" Padding="2 0">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">(</TextBlock>
+                                                    <TextBlock FontSize="32" FontFamily="Segoe UI Emoji" Margin="0 5">🌜</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bright2" Click="bright_Click" Grid.Column="1" Padding="2 0" Grid.Row="1">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">)</TextBlock>
+                                                    <TextBlock FontSize="32" FontFamily="Segoe UI Emoji" Margin="0 5">🌛</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blr2" Grid.Column="2" Grid.Row="1" Padding="2 0" Click="blr_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Consolas" Margin="0 10">(+)</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">🌜🌛</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+
+                                    </Grid>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bplus2" Grid.Column="0" Grid.Row="1" Padding="2 0" Click="bplus_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">+</TextBlock>
+                                                <TextBlock FontSize="32" FontFamily="Segoe UI Emoji" Margin="0 10">➕</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bminus2" Grid.Column="1" Grid.Row="1" Padding="2 0" Click="bminus_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">-</TextBlock>
+                                                <TextBlock FontSize="32" FontFamily="Segoe UI Emoji" Margin="0 10">➖</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpower2" Grid.Column="0" Grid.Row="2" Padding="2 0" Click="bpower_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">×</TextBlock>
+                                                <TextBlock FontSize="32" FontFamily="Segoe UI Emoji" Margin="0 10">✖️</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdevide2" Grid.Column="1" Grid.Row="2" Padding="2 0" Click="bdevide_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">/</TextBlock>
+                                                <TextBlock FontSize="32" FontFamily="Segoe UI Emoji" Margin="0 10">➗</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+
+                            <Button Style="{StaticResource CalculatorAccentButtonStyle}" x:Name="bac2" Margin="0,0,0,5" Grid.Column="1" Grid.Row="0" Padding="2 0" Click="bac_Click" CornerRadius="5">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="24" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">AC</TextBlock>
+                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">🗑️</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+
+                            <Button Style="{StaticResource CalculatorAccentButtonStyle}" x:Name="bc2" Margin="0,0,5,5" Padding="2 0" Grid.Column="0" Grid.Row="0" Click="bc_Click" CornerRadius="5">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="24" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">DEL</TextBlock>
+                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">&#x2710;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+
+                            <Grid x:Name="specialRightBlockPlace2" Grid.Row="5" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Grid x:Name="specialRightBlock2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpowerself2" Content="^" Grid.Column="0" Grid.Row="0"  FontSize="36" Click="bpowerself_Click" FontWeight="Bold" FontFamily="Consolas"/>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsqrt2" Content="√" Grid.Column="1" Grid.Row="0"  FontSize="36" Click="bsqrt_Click" FontWeight="Bold" FontFamily="Consolas"/>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bnfact2" Content="!" Click="bnfact_Click" Grid.Row="1"  FontSize="36" FontWeight="Bold" FontFamily="Consolas"/>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="babs2" Content="Abs" Click="babs_Click" Grid.Column="1" Grid.Row="1"  FontSize="28" FontFamily="Consolas">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip x:Uid="tooltip_abs" />
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bmod2" Content="Mod" Click="bmod_Click" Grid.Row="2"  FontSize="28" FontFamily="Consolas"/>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bans2" Content="Ans" Grid.Column="1" Grid.Row="2"  FontSize="28" Click="bans_Click" FontFamily="Consolas">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip x:Uid="tooltip_ans" />
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="bigleftButtonsAreaShadow" Grid.Column="0" Shadow="{StaticResource SharedShadow1}" Translation="0,0,32">
+                    <!-- Z_Depth="2" CornerRadius="5" Margin="-10,-7,-10,-13" -->
+
+                    <Grid x:Name="bigleftButtonsArea">
+                        <Grid x:Name="bigleftButtons">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Grid x:Name="specialLeftBlockBigPlace" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="6">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="specialLeftBlockPlace1" Grid.Row="0">
+                                    <Grid x:Name="specialLeftBlock1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsin2" Grid.Column="0" Grid.Row="0" FontSize="28" Click="bsin_Click" Content="sin" FontFamily="Consolas"/>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barcsin2" Grid.Column="1" Grid.Row="0" FontSize="28" Click="barcsin_Click" Content="asin" FontFamily="Consolas">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_arcsin" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcos2" Grid.Column="0" Grid.Row="1" FontSize="28" Click="bcos_Click" Content="cos" FontFamily="Consolas"/>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barccos2" Grid.Column="1" Grid.Row="1" FontSize="28" Click="barccos_Click" Content="acos" FontFamily="Consolas">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_arccos" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="btan2" Grid.Column="0" Grid.Row="2" FontSize="28" Click="btan_Click" Content="tan" FontFamily="Consolas"/>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barctan2" Grid.Column="1" Grid.Row="2" FontSize="28" Click="barctan_Click" Content="atan" FontFamily="Consolas">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_arctan" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid x:Name="specialLeftBlockPlace2" Grid.Row="1">
+                                    <Grid x:Name="specialLeftBlock2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bln2" Grid.Column="0" Grid.Row="1"  FontSize="28" Click="bln_Click" Content="ln" FontFamily="Consolas"/>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blg2" Grid.Column="1" Grid.Row="1"  FontSize="28" Click="blg_Click" Content="lg" FontFamily="Consolas"/>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brank2" Grid.Column="0" Grid.Row="2"  FontSize="28" Click="brank_Click" Content="rank" FontFamily="Consolas">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_rank" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bt2" Grid.Column="1" Grid.Row="2"  FontSize="28" Click="bt_Click" Content="()ᵀ" FontFamily="Consolas">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_t" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bgroup1" Grid.Column="0" Grid.Row="0"  FontSize="24" Content="sinh&#x23F7;" FontFamily="Consolas">
+                                            <Button.Flyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem Text="sinh" Click="bsinh_Click" />
+                                                    <MenuFlyoutItem Text="cosh" Click="bcosh_Click" />
+                                                    <MenuFlyoutItem Text="tanh" Click="btanh_Click" />
+                                                </MenuFlyout>
+                                            </Button.Flyout>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bgroup2" Grid.Column="1" Grid.Row="0"  FontSize="24" Content="arsh&#x23F7;" FontFamily="Consolas">
+                                            <Button.Flyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem Text="arsh" Click="barsh_Click">
+                                                        <ToolTipService.ToolTip>
+                                                            <ToolTip x:Uid="tooltip_arcsinh" />
+                                                        </ToolTipService.ToolTip>
+                                                    </MenuFlyoutItem>
+                                                    <MenuFlyoutItem Text="arch" Click="barch_Click">
+                                                        <ToolTipService.ToolTip>
+                                                            <ToolTip x:Uid="tooltip_arccosh" />
+                                                        </ToolTipService.ToolTip>
+                                                    </MenuFlyoutItem>
+                                                    <MenuFlyoutItem Text="arth" Click="barth_Click">
+                                                        <ToolTipService.ToolTip>
+                                                            <ToolTip x:Uid="tooltip_arctanh" />
+                                                        </ToolTipService.ToolTip>
+                                                    </MenuFlyoutItem>
+                                                </MenuFlyout>
+                                            </Button.Flyout>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bncr2" Grid.Column="0" Grid.Row="2" FontSize="28" Click="bncr_Click" Content="nCr" FontFamily="Consolas">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_ncr" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcov2" Grid.Column="0" Grid.Row="10" FontSize="28" Click="bcov_Click" Content="Cov" FontFamily="Consolas">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_cov" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="byroot2" Grid.Column="1" Grid.Row="1" FontSize="24" Click="byroot_Click" Content="ʸ√" FontFamily="Consolas">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_yroot" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b10n2" Grid.Column="0" Grid.Row="1" FontSize="28" Click="b10n_Click" Content="×10&#x207F;" FontFamily="Consolas"/>
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bnpr2" Grid.Column="1" Grid.Row="2" FontSize="28" Content="nPr" Click="bnpr_Click" FontFamily="Consolas">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_npr" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brho2" Grid.Column="1" Grid.Row="10" FontSize="28" Content="ρ" Click="brho_Click" FontFamily="Consolas">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_rho" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bave2" Grid.Row="9"  FontSize="28" Click="bave_Click" Content="Ex">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_ex" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+
+                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bd2" Grid.Column="1" Grid.Row="9"  FontSize="28" Click="bd_Click" Content="Dx">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="tooltip_dx" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+
+                            <Grid x:Name="constButtons2" Grid.Row="0" Grid.ColumnSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <!--<ColumnDefinition Width="1*"/>-->
+                                </Grid.ColumnDefinitions>
+                                <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="be2" Grid.Column="0" FontSize="36" Click="be_Click" Content="e" FontFamily="Consolas"/>
+
+                                <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="bpi2" Grid.Column="1" FontSize="36" Click="bpi_Click" Content="π" FontFamily="Consolas"/>
+
+                                <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="bi2" Grid.Column="2" FontSize="36" Click="bi_Click" Content="i" FontFamily="Consolas"/>
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+
+                <Grid x:Name="mainGrid" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*" MinHeight="100"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="7*" MinHeight="300"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <ThemeShadow x:Name="SharedShadow2" />
+                    </Grid.Resources>
+
+                    <Grid x:Name="displayMaterial" Grid.RowSpan="2">
+                        <Rectangle x:Name="displayRectangle"/>
+                    </Grid>
+                    <Grid x:Name="displayGrid" PointerEntered="DisplayRegion_PointerEntered" PointerExited="DisplayRegion_PointerExited" PointerCanceled="DisplayRegion_PointerExited" Unloaded="DisplayRegion_Unloaded" Tapped="displayGrid_Tapped">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition x:Name="displayToolsRow" Height="0"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer Name="sviewer" Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <!-- Style="{StaticResource ScrollViewerStyle1}" -->
+                            <Viewbox Name="viewbox2" Margin="0,0,0,0" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Viewbox.Resources>
+                                    <MenuFlyout x:Name="listViewItemMenu">
+                                        <MenuFlyout.Items>
+                                            <MenuFlyoutItem Name="listViewItemMenu_copy" x:Uid="menu_copy" Click="listViewItemMenu_copy_Click"/>
+                                            <MenuFlyoutItem Name="listViewItemMenu_copyExpressionAndAnswer" x:Uid="menu_copyExpressionAndAnswer" Click="listViewItemMenu_copyExpressionAndAnswer_Click"/>
+                                            <MenuFlyoutItem Name="listViewItemMenu_saveAsPic" x:Uid="menu_item_jietu" Click="listViewItemMenu_saveAsPic_Click"/>
+                                        </MenuFlyout.Items>
+                                    </MenuFlyout>
+                                    <MenuFlyout x:Name="treeViewItemMenu">
+                                        <MenuFlyout.Items>
+                                            <MenuFlyoutItem Name="treeViewItemMenu_copy" x:Uid="menu_copy" Click="treeViewItemMenu_copy_Click"/>
+                                        </MenuFlyout.Items>
+                                    </MenuFlyout>
+                                </Viewbox.Resources>
+                                <Grid x:Name="displayView">
+                                    <ListView x:Name="listView" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" FontSize="32"
+                                              SelectionMode="None" IsItemClickEnabled="False" IsTabStop="False"
+                                              ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" LayoutUpdated="listView_LayoutUpdated">
+                                        <ListViewItem x:Name="originalListItem" FontSize="16" FontWeight="Bold" Foreground="Gray" IsEnabled="False" Style="{StaticResource AlertRowStyle}">
+                                            <TextBlock x:Name="originalTextBlock" x:Uid="mathListView" TextWrapping="Wrap"/>
+                                        </ListViewItem>
+                                    </ListView>
+                                    <newCtls:TreeView x:Name="treeView" Visibility="Collapsed" 
+                                              Background="Transparent" FontFamily="Consolas" FontSize="32" 
+                                              ScrollViewer.VerticalScrollBarVisibility="Hidden"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                              LayoutUpdated="treeView_LayoutUpdated" ItemInvoked="treeView_ItemInvoked">
+                                    </newCtls:TreeView>
+                                </Grid>
+                            </Viewbox>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Name="toolgrid" Margin="0,0,36,0" Background="#00FFFFFF" Visibility="Collapsed" GotFocus="DisplayTools_FocusChanged" LostFocus="DisplayTools_FocusChanged">
+                            <Grid.Resources>
+                                <!-- Native disabled buttons should read as faded icons, not raised tiles. -->
+                                <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent"/>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <input:CenteredSlider x:Name="slider" Grid.Column="6" Maximum="200" Minimum="10" Value="100" ThumbTemplate="{StaticResource CenteredSliderThumbTemplate}" ValueChanged="slider_ValueChanged" PointerExited="slider_PointerExited"/>
+                            <Button Name="bbig" Grid.Column="7" Padding="2 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="#FF959595" Background="#00000000" Click="mbig_Click" Style="{StaticResource CalculatorToolButtonStyle}">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Symbol" Margin="0 5">&#xE0B6;</TextBlock>
+                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">&#x1F50E;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+                            <Button Name="bsmall" Grid.Column="5" Padding="2 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="#FF959595" Background="#00000000" Click="msmall_Click" Style="{StaticResource CalculatorToolButtonStyle}">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Symbol" Margin="0 5">&#xE0B8;</TextBlock>
+                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">&#x1F52C;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+                            <Button Name="mpre" Grid.Column="1" Padding="2 0" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Foreground="#FFB4B4B4" Background="#00000000" Click="mpre_Click" Style="{StaticResource CalculatorToolButtonStyle}" IsEnabled="False">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Symbol" Margin="0 5">&#x23F4;</TextBlock>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Emoji" Margin="0 5">&#x1F53A;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+                            <Button Name="mnext" Grid.Column="2" Padding="2 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="#FFB4B4B4" Background="#00000000" Click="mnext_Click" Style="{StaticResource CalculatorToolButtonStyle}" IsEnabled="False">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Symbol" Margin="0 5">&#x23F5;</TextBlock>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Emoji" Margin="0 5">&#x1F53B;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+                            <Button Name="mdelHis" Grid.Column="3" Padding="2 0" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Foreground="#FFB4B4B4" Background="#00000000" Style="{StaticResource CalculatorToolButtonStyle}" IsEnabled="False" Click="mdelHis_Click">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Symbol" Margin="0 5">&#xE0E0;</TextBlock>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Emoji" Margin="0 5">&#x274C;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+                            <TextBlock Name="tHisPtr" Text="" Grid.Column="4" Padding="5,10,0,0" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" FontSize="14"></TextBlock>
+                            <Button x:Name="btop" Grid.Column="0" Padding="2 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="#FFB4B4B4" Background="#00000000" Style="{StaticResource CalculatorToolButtonStyle}" Click="btop_Click">
+                                <Viewbox Stretch="Uniform">
+                                    <Grid>
+                                        <TextBlock Name="btopText" FontSize="20" FontFamily="Segoe UI Symbol" Margin="0 5">&#xE141;</TextBlock>
+                                        <TextBlock FontSize="20" FontFamily="Segoe UI Emoji" Margin="0 5">&#x1F4CC;</TextBlock>
+                                    </Grid>
+                                </Viewbox>
+                            </Button>
+                        </Grid>
+                        <ToggleButton x:Name="displayToolsToggle" Grid.RowSpan="2" Width="32" Height="32" MinWidth="0" MinHeight="0"
+                                      HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="0" Background="Transparent" BorderBrush="Transparent"
+                                      Click="DisplayToolsToggle_Click" Tapped="DisplayToolsToggle_Tapped"
+                                      AutomationProperties.Name="{x:Bind DisplayToolsToggleLabel}" ToolTipService.ToolTip="{x:Bind DisplayToolsToggleLabel}">
+                            <ToggleButton.Resources>
+                                <SolidColorBrush x:Key="ToggleButtonBackgroundChecked" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ToggleButtonBackgroundCheckedPointerOver" Color="{ThemeResource ControlFillColorSecondary}"/>
+                                <SolidColorBrush x:Key="ToggleButtonBackgroundCheckedPressed" Color="{ThemeResource ControlFillColorTertiary}"/>
+                                <SolidColorBrush x:Key="ToggleButtonBorderBrushChecked" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ToggleButtonBorderBrushCheckedPointerOver" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ToggleButtonBorderBrushCheckedPressed" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ToggleButtonForegroundChecked" Color="{ThemeResource TextFillColorPrimary}"/>
+                                <SolidColorBrush x:Key="ToggleButtonForegroundCheckedPointerOver" Color="{ThemeResource TextFillColorPrimary}"/>
+                                <SolidColorBrush x:Key="ToggleButtonForegroundCheckedPressed" Color="{ThemeResource TextFillColorSecondary}"/>
+                            </ToggleButton.Resources>
+                            <FontIcon x:Name="displayToolsToggleIcon" FontFamily="Segoe Fluent Icons" FontSize="12" Glyph="&#xE70E;"/>
+                        </ToggleButton>
+                    </Grid>
+                    <Grid Grid.Row="2" x:Name="downGrid" SizeChanged="downGrid_SizeChanged">
+                        <Grid x:Name="buttonGrid" Margin="0,0,0,0" Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.Resources>
+                                <ThemeShadow x:Name="SharedShadow3" />
+                            </Grid.Resources>
+
+                            <Grid x:Name="midButtons"  Grid.Column="1" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="4*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.Resources>
+                                    <ThemeShadow x:Name="SharedShadow4" />
+                                </Grid.Resources>
+
+                                <Grid x:Name="conButtonsArea">
+                                    <Grid x:Name="conButtons"  Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bup" Grid.Row="0" Grid.Column="0" Padding="0" Click="bup_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Symbol" Margin="10 6">&#x2B70;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">🏃‍♂️</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blefta" Grid.Row="0" Grid.Column="1" Padding="0" Click="blefta_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Symbol" Margin="10 6">&#x2B60;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">👈</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="babout" Grid.Row="0" Grid.Column="2" Padding="0" Click="babout_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe MDL2 Assets" Margin="10 15">&#xE82F;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9F8;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x26C4;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F30C;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F41E;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F42D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F42E;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F42F;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F430;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F431;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F432;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F40D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F433;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F434;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F435;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F411;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F414;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F436;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F437;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F438;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F439;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F43A;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F43B;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F43C;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F47A;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F47D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F47E;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F47F;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F525;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F577;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F680;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F648;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F649;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F64A;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F916;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F921;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F95D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F951;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F966;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F96A;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F96C;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F96D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F984;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F981;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F985;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F988;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F989;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F98A;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F98B;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F98C;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F98D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F98E;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F98F;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F991;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F994;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F995;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F996;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F998;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F99A;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F99C;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F99D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A2;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A3;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A4;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A5;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A6;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A7;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9A9;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9AD;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9AC;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9C0;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9C1;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9CA;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9CB;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9D9;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9DA;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9DB;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9DC;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9DD;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9DE;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9DF;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9E0;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F9EC;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1FAB6;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1FAD1;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1FAB4;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1FAD2;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F95E;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F957;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F959;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F980;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F983;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F490;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F4A1;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F4A3;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F4A9;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F422;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F420;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F370;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F36D;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F379;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3A8;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3C7;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3CD;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3DD;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3D4;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F383;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F385;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F393;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3A9;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3B8;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3C0;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x1F3C2;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x2618;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x269C;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x26BD;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x26F7;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x2B55;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x2744;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x2696;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x2602;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x265F;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">&#x2728;</TextBlock>
+                                                    <!-- 古早logo，为避免误解其可以手写而弃用 -->
+                                                    <Image x:Name="logo2" Source="Svg/logo.svg" Width="60" Height="60" Margin="5"/>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brighta" Grid.Row="0" Grid.Column="3" Padding="0" Click="brighta_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Symbol" Margin="10 6">&#x2B62;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6">👉</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdown" Grid.Row="0" Grid.Column="4" Padding="0" Click="bdown_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Symbol" Margin="10 6">&#x2B72;</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="10 6" RenderTransformOrigin="0.5,0.5">
+                                                        <TextBlock.RenderTransform>
+                                                            <TransformGroup>
+                                                                <ScaleTransform ScaleX="-1"/>
+                                                                <SkewTransform/>
+                                                                <RotateTransform/>
+                                                                <TranslateTransform/>
+                                                            </TransformGroup>
+                                                        </TextBlock.RenderTransform>🏃‍♀️</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <newCtls:TeachingTip x:Name="teachingTip1"
+                                        Target="{x:Bind babout}"
+                                        Title=""
+                                        Subtitle=""
+                                        ActionButtonClick="teachingTip1_ActionButtonClick"
+	                                    ActionButtonContent="">
+                                            <newCtls:TeachingTip.IconSource>
+                                                <newCtls:SymbolIconSource Symbol="Emoji" />
+                                            </newCtls:TeachingTip.IconSource>
+                                        </newCtls:TeachingTip>
+                                    </Grid>
+                                </Grid>
+                                <Grid x:Name="numBlockShadow" Grid.Row="1" Shadow="{StaticResource SharedShadow4}" Translation="0,0,32">
+                                    <!-- Z_Depth="1" CornerRadius="5" Margin="-7,-8,-7,-8" -->
+
+                                    <Grid x:Name="numButtons"  Grid.Row="1" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b7" Grid.Row="0" Grid.Column="0" Padding="2 0" Click="b7_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">7</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">7️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b8" Grid.Row="0" Grid.Column="1" Padding="2 0" Click="b8_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">8</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">8️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b9" Grid.Row="0" Grid.Column="2" Padding="2 0" Click="b9_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">9</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">9️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b4" Grid.Row="1" Padding="2 0" Click="b4_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">4</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">4️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b5" Grid.Column="1" Padding="2 0" Grid.Row="1" Click="b5_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">5</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">5️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b6" Grid.Column="2" Padding="2 0" Grid.Row="1" Click="b6_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">6</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">6️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b1" Grid.Row="2" Padding="2 0" Click="b1_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">1</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">1️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b2" Grid.Column="1" Grid.Row="2" Padding="2 0" Click="b2_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">2</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">2️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b3" Grid.Column="2" Grid.Row="2" Padding="2 0" Click="b3_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">3</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">3️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b0" Grid.Column="1" Grid.Row="3" Padding="2 0" Click="b0_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">0</TextBlock>
+                                                    <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">0️⃣</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdou" Grid.Column="0" Grid.Row="3" Padding="2 0" Click="b000_Click" >
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Consolas" Margin="0 10">,</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpoint" Grid.Column="2" Grid.Row="3" Padding="2 0" Click="bpoint_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="36" FontFamily="Consolas" Margin="0 10">.</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <Grid x:Name="leftButtonsAreaShadow" Grid.Column="0" Shadow="{StaticResource SharedShadow3}" Translation="0,0,32">
+                                <!-- Z_Depth="2" CornerRadius="5" Margin="-10,-10,-10,-13" -->
+
+                                <Grid x:Name="leftButtonsArea">
+                                    <Grid x:Name="leftButtons">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="6*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid x:Name="constButtons" Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="0.5*" MinWidth="24"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="be" Grid.Column="0" Padding="2 0" Click="be_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">e</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+
+                                            <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="bpi" Grid.Column="1" Padding="2 0" Click="bpi_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">π</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+
+                                            <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="bi" Grid.Column="2" Padding="2 0" Click="bi_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">i</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bshift" Grid.Column="3" Padding="2 0" MinWidth="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FontFamily="Segoe UI Symbol" Click="bshift_Click">
+                                                <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+                                                    <TextBlock x:Name="shiftGlyph" FontSize="20" FontFamily="Segoe UI Symbol" Text="&#x23F7;"/>
+                                                </Viewbox>
+                                            </Button>
+
+                                        </Grid>
+
+                                        <Grid x:Name="leftButtons1" Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bncr" Grid.Row="0" Grid.Column="0" Padding="2 0" Click="bncr_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_ncr" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">nCr</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bnpr" Grid.Row="0" Grid.Column="1" Padding="2 0" Click="bnpr_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_npr" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">nPr</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsin" Grid.Row="1" Grid.Column="0" Padding="2 0" Click="bsin_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">sin</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barcsin" Grid.Row="1" Grid.Column="1" Padding="2 0" Click="barcsin_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arcsin" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">asin</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcos" Grid.Row="2" Grid.Column="0" Padding="2 0" Click="bcos_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">cos</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barccos" Grid.Row="2" Grid.Column="1" Padding="2 0" Click="barccos_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arccos" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">acos</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="btan" Grid.Row="3" Grid.Column="0" Padding="2 0" Click="btan_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">tan</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barctan" Grid.Row="3" Grid.Column="1" Padding="2 0" Click="barctan_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arctan" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">atan</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bln" Grid.Row="4" Grid.Column="0" Padding="2 0" Click="bln_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">ln</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="byroot" Grid.Row="4" Grid.Column="1" Padding="2 0" Click="byroot_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_yroot" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">ʸ√</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bave" Grid.Row="5" Grid.Column="0" Padding="2 0" Click="bave_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_ex" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Ex</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bd" Grid.Row="5" Grid.Column="1" Padding="2 0" Click="bd_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_dx" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Dx</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                        </Grid>
+
+                                        <Grid x:Name="leftButtons2" Grid.Row="1" Visibility="Collapsed">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b10n" Grid.Row="0" Grid.Column="0" Padding="2 0" Click="b10n_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">×10&#x207F;</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blg" Grid.Row="0" Grid.Column="1" Padding="2 0" Click="blg_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">lg</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsinh" Grid.Row="1" Grid.Column="0" Padding="2 0" Click="bsinh_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">sinh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barsh" Grid.Row="1" Grid.Column="1" Padding="2 0" Click="barsh_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arcsinh" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">arsh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcosh" Grid.Row="2" Grid.Column="0" Padding="2 0" Click="bcosh_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">cosh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barch" Grid.Row="2" Grid.Column="1" Padding="2 0" Click="barch_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arccosh" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">arch</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="btanh" Grid.Row="3" Grid.Column="0" Padding="2 0" Click="btanh_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">tanh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barth" Grid.Row="3" Grid.Column="1" Padding="2 0" Click="barth_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arctanh" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">arth</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brank" Grid.Row="4" Grid.Column="0" Padding="2 0" Click="brank_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_rank" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">rank</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bt" Grid.Row="4" Grid.Column="1" Padding="2 0" Click="bt_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_t" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">()ᵀ</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcov" Grid.Row="5" Grid.Column="0" Padding="2 0" Click="bcov_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_cov" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Cov</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brho" Grid.Row="5" Grid.Column="1" Padding="2 0" Click="brho_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_rho" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">ρ</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <Grid x:Name="rightButtonsAreaShadow" Grid.Column="2" Shadow="{StaticResource SharedShadow3}" Translation="0,0,32">
+                                <!-- Z_Depth="2" CornerRadius="5" Margin="-10,-10,-10,-13" -->
+
+                                <Grid x:Name="rightButtonsArea">
+                                    <Grid x:Name="rightButtons">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid x:Name="importantOprButtons" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="1*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bleft"  Click="bleft_Click" Grid.Column="0" Grid.Row="1" Padding="2 0">
+                                                    <Viewbox Stretch="Uniform">
+                                                        <Grid>
+                                                            <TextBlock FontSize="26" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">(</TextBlock>
+                                                            <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">🌜</TextBlock>
+                                                        </Grid>
+                                                    </Viewbox>
+                                                </Button>
+
+                                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bright" Click="bright_Click" Grid.Column="1" Grid.Row="1" Padding="2 0">
+                                                    <Viewbox Stretch="Uniform">
+                                                        <Grid>
+                                                            <TextBlock FontSize="26" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">)</TextBlock>
+                                                            <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">🌛</TextBlock>
+                                                        </Grid>
+                                                    </Viewbox>
+                                                </Button>
+
+                                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blr" Grid.Column="2" Grid.Row="1" Padding="2 0" Click="blr_Click">
+                                                    <Viewbox Stretch="Uniform">
+                                                        <Grid>
+                                                            <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">(+)</TextBlock>
+                                                            <TextBlock FontSize="20" FontFamily="Segoe UI Emoji" Margin="0 5">🌜🌛</TextBlock>
+                                                        </Grid>
+                                                    </Viewbox>
+                                                </Button>
+
+                                            </Grid>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bplus" Grid.Column="0" Grid.Row="1" Padding="2 0" Click="bplus_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <Grid>
+                                                        <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">+</TextBlock>
+                                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">➕</TextBlock>
+                                                    </Grid>
+                                                </Viewbox>
+                                            </Button>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bminus" Grid.Column="1" Grid.Row="1" Padding="2 0" Click="bminus_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <Grid>
+                                                        <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">-</TextBlock>
+                                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">➖</TextBlock>
+                                                    </Grid>
+                                                </Viewbox>
+                                            </Button>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpower" Grid.Column="0" Grid.Row="2" Padding="2 0" Click="bpower_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <Grid>
+                                                        <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">×</TextBlock>
+                                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">✖️</TextBlock>
+                                                    </Grid>
+                                                </Viewbox>
+                                            </Button>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdevide" Grid.Column="1" Grid.Row="3" Padding="2 0" Click="bdevide_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <Grid>
+                                                        <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">/</TextBlock>
+                                                        <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">➗</TextBlock>
+                                                    </Grid>
+                                                </Viewbox>
+                                            </Button>
+                                        </Grid>
+
+                                        <Button Style="{StaticResource CalculatorAccentButtonStyle}" x:Name="bac" Grid.Column="1" Grid.Row="0" Padding="2 0" Margin="0,0,0,0" Click="bac_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Consolas" Margin="0 13">AC</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">🗑️</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{StaticResource CalculatorAccentButtonStyle}" x:Name="bc" Grid.Column="0" Grid.Row="0" Padding="2 0" Margin="0,0,1,0" Click="bc_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <Grid>
+                                                    <TextBlock FontSize="24" FontFamily="Consolas" Margin="0 13">DEL</TextBlock>
+                                                    <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">&#x2710;</TextBlock>
+                                                </Grid>
+                                            </Viewbox>
+                                        </Button>
+
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpowerself" Grid.Column="0" Grid.Row="4" Padding="2 0" Click="bpowerself_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">^</TextBlock>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsqrt" Grid.Column="1" Grid.Row="4" Padding="2 0" Click="bsqrt_Click">
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">√</TextBlock>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bnfact" Click="bnfact_Click" Grid.Row="5" Padding="2 0">
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">!</TextBlock>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="babs" Click="babs_Click" Grid.Column="1" Grid.Row="5" Padding="2 0">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_abs" />
+                                            </ToolTipService.ToolTip>
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Abs</TextBlock>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bmod" Click="bmod_Click" Grid.Row="6" Padding="2 0">
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Mod</TextBlock>
+                                            </Viewbox>
+                                        </Button>
+
+                                        <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bans" Grid.Column="1" Grid.Row="6" Padding="2 0" Click="bans_Click">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip x:Uid="tooltip_ans" />
+                                            </ToolTipService.ToolTip>
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Ans</TextBlock>
+                                            </Viewbox>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                        <Grid x:Name="buttonGrid_1" Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.Resources>
+                                <ThemeShadow x:Name="SharedShadow3_1" />
+                                <ThemeShadow x:Name="SharedShadow4_1" />
+                            </Grid.Resources>
+
+                            <Grid x:Name="conButtonsArea_1"  Grid.Row="0">
+                                
+                            </Grid>
+
+                            <Grid x:Name="numBlockShadow_1" Grid.Row="3" Grid.RowSpan="4">
+                                <Grid x:Name="numButtons_1"  Grid.Row="0" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b7_1" Grid.Row="0" Grid.Column="0" Padding="2 0" Click="b7_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">7</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">7️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b8_1" Grid.Row="0" Grid.Column="1" Padding="2 0" Click="b8_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">8</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">8️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b9_1" Grid.Row="0" Grid.Column="2" Padding="2 0" Click="b9_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">9</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">9️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b4_1" Grid.Row="1" Padding="2 0" Click="b4_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">4</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">4️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b5_1" Grid.Column="1" Padding="2 0" Grid.Row="1" Click="b5_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">5</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">5️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b6_1" Grid.Column="2" Padding="2 0" Grid.Row="1" Click="b6_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">6</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">6️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b1_1" Grid.Row="2" Padding="2 0" Click="b1_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">1</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">1️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b2_1" Grid.Column="1" Grid.Row="2" Padding="2 0" Click="b2_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">2</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">2️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b3_1" Grid.Column="2" Grid.Row="2" Padding="2 0" Click="b3_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">3</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">3️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b0_1" Grid.Column="1" Grid.Row="3" Padding="2 0" Click="b0_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Segoe UI" Margin="0 10">0</TextBlock>
+                                                <TextBlock FontSize="40" FontFamily="Segoe UI Emoji" Margin="0 5">0️⃣</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdou_1" Grid.Column="0" Grid.Row="3" Padding="2 0" Click="b000_Click" >
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Consolas" Margin="0 10">,</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpoint_1" Grid.Column="2" Grid.Row="3" Padding="2 0" Click="bpoint_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="36" FontFamily="Consolas" Margin="0 10">.</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.RowSpan="2" x:Name="upButtons" Shadow="{StaticResource SharedShadow4_1}" Translation="0,0,32">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bleft_1"  Click="bleft_Click" Grid.Column="0" Grid.Row="1" Padding="5 0">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="26" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">(</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">🌜</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bright_1" Click="bright_Click" Grid.Column="1" Grid.Row="1" Padding="5 0">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="26" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">)</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 5">🌛</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blr_1" Grid.Column="2" Grid.Row="1" Padding="5 0" Click="blr_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">(+)</TextBlock>
+                                                <TextBlock FontSize="20" FontFamily="Segoe UI Emoji" Margin="0 5">🌜🌛</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{StaticResource CalculatorAccentButtonStyle}" x:Name="bac_1" Grid.Column="4" Padding="2 0" Margin="0,0,0,0" Click="bac_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="24" FontFamily="Consolas" Margin="0 13">AC</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">🗑️</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{StaticResource CalculatorAccentButtonStyle}" x:Name="bc_1" Grid.Column="3" Padding="2 0" Margin="0,0,1,0" Click="bc_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="24" FontFamily="Consolas" Margin="0 13">DEL</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">&#x2710;</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bplus_1" Grid.Column="0" Padding="5 0" Click="bplus_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">+</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">➕</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bminus_1" Grid.Column="1" Padding="5 0" Click="bminus_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">-</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">➖</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpower_1" Grid.Column="2" Padding="5 0" Click="bpower_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">×</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">✖️</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bdevide_1" Grid.Column="3" Padding="5 0" Click="bdevide_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <Grid>
+                                                <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">/</TextBlock>
+                                                <TextBlock FontSize="24" FontFamily="Segoe UI Emoji" Margin="0 10">➗</TextBlock>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bpowerself_1" Grid.Column="4" Padding="5 0" Click="bpowerself_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">^</TextBlock>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsqrt_1" Grid.Column="5" Padding="5 0" Click="bsqrt_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">√</TextBlock>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bnfact_1" Click="bnfact_Click" Grid.Column="6" Padding="5 0">
+                                        <Viewbox Stretch="Uniform">
+                                            <TextBlock FontSize="28" FontFamily="Consolas" FontWeight="Bold" Margin="0 10">!</TextBlock>
+                                        </Viewbox>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+
+                            <Grid Grid.Row="7" x:Name="downButtons" Shadow="{StaticResource SharedShadow3_1}" Translation="0,0,32">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="babs_1" Click="babs_Click" Grid.Column="0" Padding="5 0">
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip x:Uid="tooltip_abs" />
+                                    </ToolTipService.ToolTip>
+                                    <Viewbox Stretch="Uniform">
+                                        <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Abs</TextBlock>
+                                    </Viewbox>
+                                </Button>
+
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bmod_1" Click="bmod_Click" Grid.Column="1" Padding="5 0">
+                                    <Viewbox Stretch="Uniform">
+                                        <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Mod</TextBlock>
+                                    </Viewbox>
+                                </Button>
+
+                                <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bans_1" Grid.Column="2" Padding="5 0" Click="bans_Click">
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip x:Uid="tooltip_ans" />
+                                    </ToolTipService.ToolTip>
+                                    <Viewbox Stretch="Uniform">
+                                        <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Ans</TextBlock>
+                                    </Viewbox>
+                                </Button>
+
+                                <Grid x:Name="constButtons_1" Grid.Column="3" Grid.ColumnSpan="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="0.5*" MinWidth="24"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="be_1" Grid.Column="0" Padding="5 0" Click="be_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">e</TextBlock>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="bpi_1" Grid.Column="1" Padding="5 0" Click="bpi_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">π</TextBlock>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind ConstantKeyStyle, Mode=OneWay}" x:Name="bi_1" Grid.Column="2" Padding="5 0" Click="bi_Click">
+                                        <Viewbox Stretch="Uniform">
+                                            <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">i</TextBlock>
+                                        </Viewbox>
+                                    </Button>
+
+                                    <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bshift_1" Grid.Column="3" Padding="2 0" MinWidth="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FontFamily="Segoe UI Symbol" Click="bshift_Click">
+                                        <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+                                            <TextBlock x:Name="shiftGlyph_1" FontSize="20" FontFamily="Segoe UI Symbol" Text="&#x23F7;"/>
+                                        </Viewbox>
+                                    </Button>
+
+                                </Grid>
+                            </Grid>
+
+                            <Grid x:Name="leftButtonsAreaShadow_1" Grid.Row="8" Grid.RowSpan="2">
+                                <Grid x:Name="leftButtonsArea_1">
+                                    <Grid x:Name="leftButtons_1">
+                                        <Grid x:Name="leftButtons1_1" Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bncr_1" Grid.Row="1" Grid.Column="0" Padding="5 0" Click="bncr_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_ncr" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">nCr</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bnpr_1" Grid.Row="1" Grid.Column="1" Padding="5 0" Click="bnpr_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_npr" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">nPr</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsin_1" Grid.Row="0" Grid.Column="0" Padding="5 0" Click="bsin_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">sin</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barcsin_1" Grid.Row="0" Grid.Column="3" Padding="5 0" Click="barcsin_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arcsin" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">asin</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcos_1" Grid.Row="0" Grid.Column="1" Padding="5 0" Click="bcos_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">cos</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barccos_1" Grid.Row="0" Grid.Column="4" Padding="5 0" Click="barccos_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arccos" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">acos</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="btan_1" Grid.Row="0" Grid.Column="2" Padding="5 0" Click="btan_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">tan</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barctan_1" Grid.Row="0" Grid.Column="5" Padding="5 0" Click="barctan_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arctan" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">atan</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bln_1" Grid.Row="1" Grid.Column="2" Padding="5 0" Click="bln_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">ln</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="byroot_1" Grid.Row="1" Grid.Column="3" Padding="5 0" Click="byroot_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_yroot" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">ʸ√</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bave_1" Grid.Row="1" Grid.Column="4" Padding="5 0" Click="bave_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_ex" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Ex</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bd_1" Grid.Row="1" Grid.Column="5" Padding="5 0" Click="bd_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_dx" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Dx</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                        </Grid>
+
+                                        <Grid x:Name="leftButtons2_1" Grid.Row="0" Visibility="Collapsed">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="b10n_1" Grid.Row="1" Grid.Column="0" Padding="5 0" Click="b10n_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">×10&#x207F;</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="blg_1" Grid.Row="1" Grid.Column="1" Padding="5 0" Click="blg_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">lg</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bsinh_1" Grid.Row="0" Grid.Column="0" Padding="5 0" Click="bsinh_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">sinh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barsh_1" Grid.Row="0" Grid.Column="3" Padding="5 0" Click="barsh_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arcsinh" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">arsh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcosh_1" Grid.Row="0" Grid.Column="1" Padding="5 0" Click="bcosh_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">cosh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barch_1" Grid.Row="0" Grid.Column="4" Padding="5 0" Click="barch_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arccosh" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">arch</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="btanh_1" Grid.Row="0" Grid.Column="2" Padding="5 0" Click="btanh_Click">
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">tanh</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="barth_1" Grid.Row="0" Grid.Column="5" Padding="5 0" Click="barth_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_arctanh" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">arth</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brank_1" Grid.Row="1" Grid.Column="2" Padding="5 0" Click="brank_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_rank" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">rank</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bt_1" Grid.Row="1" Grid.Column="3" Padding="5 0" Click="bt_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_t" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">()ᵀ</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="bcov_1" Grid.Row="1" Grid.Column="4" Padding="5 0" Click="bcov_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_cov" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">Cov</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                            <Button Style="{x:Bind KeyStyle, Mode=OneWay}" x:Name="brho_1" Grid.Row="1" Grid.Column="5" Padding="5 0" Click="brho_Click">
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip x:Uid="tooltip_rho" />
+                                                </ToolTipService.ToolTip>
+                                                <Viewbox Stretch="Uniform">
+                                                    <TextBlock FontSize="20" FontFamily="Consolas" Margin="0 10">ρ</TextBlock>
+                                                </Viewbox>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="inputBlockShadow" Grid.Row="1" Shadow="{StaticResource SharedShadow2}" Translation="0,0,48">
+                        <!-- Z_Depth="2" CornerRadius="5" Margin="-13,0,-13,-17" -->
+
+                        <Grid x:Name="inputGrid" Margin="0,0,0,0" Grid.Row="1" PointerEntered="DisplayRegion_PointerEntered" PointerExited="DisplayRegion_PointerExited">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="16*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="inputRectangle" Margin="0,0,0,0" Grid.ColumnSpan="3" Fill="#FF303030">
+                                <Rectangle.Resources>
+                                    <MenuFlyout x:Name="inputBoxMenu">
+                                        <MenuFlyout.Items>
+                                            <MenuFlyoutItem Name="mCopy" x:Uid="menu_copy" Click="MenuFlyoutItem_Click_3"/>
+                                            <MenuFlyoutItem Name="mPaste" x:Uid="menu_paste" Click="MenuFlyoutItem_Click_4"/>
+                                        </MenuFlyout.Items>
+                                    </MenuFlyout>
+                                </Rectangle.Resources>
+                            </Rectangle>
+                            <input:ExpressionInputBox x:Name="inputBox" Grid.Column="1" Margin="0,0,5,0" Foreground="White" FontFamily="Consolas" FontSize="32" RightTapped="inputRichBox_RightTapped"/>
+                            <Button Style="{StaticResource CalculatorFunctionButtonStyle}" x:Name="bsetting" Content="≡" Grid.Column="0" Margin="0,0,0,0" FontSize="32" Foreground="White" Background="#FF3F3F3F" Click="bsetting_Click" FontFamily="Consolas">
+                                <Button.Flyout>
+                                    <MenuFlyout x:Name="menu">
+                                        <MenuFlyoutSubItem x:Name="mSettings" x:Uid="menu_settings" FontFamily="Segoe MDL2 Assets">
+                                            <ToggleMenuFlyoutItem x:Uid="menu_black"
+                            IsChecked="False" Name="Tblack" Click="Tblack_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_white"
+                            IsChecked="False" Name="Twhite" Click="Twhite_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_fs"
+                            IsChecked="True" Name="Tfs" Click="Tfs_Click"/>
+                                            <MenuFlyoutSeparator/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_acrylic"
+                            IsChecked="True" Name="TAcrylic" Click="TAcrylic_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_emoji"
+                            IsChecked="False" Name="TEmoji" Click="TEmoji_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_top"
+                            IsChecked="False" Name="Ttop" Click="Ttop_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_liveTile"
+                            IsChecked="True" Name="TLiveTile" Click="TLiveTile_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_clearLast"
+                            IsChecked="False" Name="TClearLast" Click="TClearLast_Click"/>
+                                        </MenuFlyoutSubItem>
+                                        <MenuFlyoutSubItem x:Uid="menu_computing_settings" FontFamily="Segoe MDL2 Assets">
+                                            <ToggleMenuFlyoutItem x:Name="TNumericMode" x:Uid="mode_numeric" IsChecked="True" Click="NumericMode_Click"/>
+                                            <ToggleMenuFlyoutItem x:Name="TSymbolicMode" x:Uid="mode_symbolic" IsChecked="False" Click="SymbolicMode_Click"/>
+                                            <MenuFlyoutSeparator/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_hudu" 
+                            IsChecked="True" Name="Thudu" Click="ToggleMenuFlyoutItem_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_jiaodu"
+                            IsChecked="False" Name="Tnohudu" Click="ToggleMenuFlyoutItem_Click_1"/>
+                                            <MenuFlyoutSeparator/>
+                                            <ToggleMenuFlyoutItem Name="Tsolve" x:Uid="menu_tongshi"
+                            IsChecked="True" Click="Tsolve_Click"/>
+                                            <ToggleMenuFlyoutItem Name="TFoldingNum" x:Uid="menu_folding_num"
+                            IsChecked="True" Click="TFoldingNum_Click"/>
+                                            <ToggleMenuFlyoutItem Name="TShowCalculationSteps" x:Uid="menu_show_calculation_steps"
+                            IsChecked="True" Click="TShowCalculationSteps_Click"/>
+                                        </MenuFlyoutSubItem>
+                                        <MenuFlyoutSubItem x:Name="mKey" x:Uid="menu_key" FontFamily="Segoe MDL2 Assets">
+                                            <ToggleMenuFlyoutItem x:Uid="menu_tapFirst" 
+                            IsChecked="True" x:Name="TTapFirst" Click="TTapFirst_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_clickFirst"
+                            IsChecked="False" x:Name="TClickFirst" Click="TClickFirst_Click"/>
+                                            <MenuFlyoutSeparator/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_leftHanded" 
+                            IsChecked="False" x:Name="TLeftHanded" Click="TLeftHanded_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_rightHanded"
+                            IsChecked="True" x:Name="TRightHanded" Click="TRightHanded_Click"/>
+                                            <MenuFlyoutSeparator/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_showAO"
+                            IsChecked="True" x:Name="TShowAO"  Click="TShowAO_Click"/>
+                                            <ToggleMenuFlyoutItem x:Uid="menu_directionKeys"
+                            IsChecked="True" Name="TDirectionKeys" Click="TDirectionKeys_Click"/>
+                                        </MenuFlyoutSubItem>
+                                        <MenuFlyoutItem x:Uid="menu_huifu" Click="MenuFlyoutItem_Click_5" FontFamily="Segoe MDL2 Assets" />
+                                        <MenuFlyoutSeparator/>
+                                        <MenuFlyoutItem x:Name="Mjietu" x:Uid="menu_jietu" Click="MenuFlyoutItem_Click_2" FontFamily="Segoe MDL2 Assets"/>
+                                        <MenuFlyoutSeparator/>
+                                        <MenuFlyoutItem x:Uid="menu_bangzhu" Click="MenuFlyoutItem_Click_1" FontFamily="Segoe MDL2 Assets" />
+                                        <MenuFlyoutItem x:Uid="menu_dashang" Click="bdonate_Click" FontFamily="Segoe MDL2 Assets" />
+                                        <MenuFlyoutItem x:Uid="menu_guanyu" Click="MenuFlyoutItem_Click" FontFamily="Segoe MDL2 Assets" />
+                                    </MenuFlyout>
+                                </Button.Flyout>
+                            </Button>
+                            <Grid x:Name="bequalPlace1" Grid.Column="2">
+                                <Button Style="{StaticResource CalculatorFunctionButtonStyle}" x:Name="bequal" Content="=" Margin="0,0,0,0" Click="bequal_Click" FontSize="32" Foreground="White" Background="#FF680000" FontFamily="Consolas" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <ctls:GridSplitter Style="{StaticResource GridSplitterStyle}" x:Name="gridSplitter" Grid.Row="1" 
+                                       Background="Transparent" Foreground="Transparent" 
+                                       ResizeBehavior="PreviousAndNext" ResizeDirection="Auto" 
+                                       HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                       PointerEntered="DisplayRegion_PointerEntered" PointerExited="DisplayRegion_PointerExited">
+                    </ctls:GridSplitter>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Page>

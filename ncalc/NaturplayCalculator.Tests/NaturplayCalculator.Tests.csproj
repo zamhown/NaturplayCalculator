@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NaturplayCalculator.Presentation\NaturplayCalculator.Presentation.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"><PrivateAssets>all</PrivateAssets></PackageReference>
+    <ProjectReference Include="..\NaturplayCalculator.Core\NaturplayCalculator.Core.csproj" />
+    <ProjectReference Include="..\Naturplay.Tex\Naturplay.Tex.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\NaturplayCalculator\MainPage.xaml" Link="Ui\MainPage.xaml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\NaturplayCalculator\Styles\CalculatorControls.xaml" Link="Ui\CalculatorControls.xaml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

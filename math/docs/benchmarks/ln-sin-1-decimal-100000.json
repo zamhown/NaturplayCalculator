@@ -1,0 +1,22 @@
+{
+  "Expression": "ln(sin(1))",
+  "Digits": 100000,
+  "Radix": 10,
+  "Rounding": "TowardZero",
+  "CertifiedByBothEndpoints": true,
+  "EvaluationTime": "00:00:15.2216750",
+  "TotalTime": "00:00:15.3457375",
+  "PeakWorkingSetBytes": 71675904,
+  "Sha256": "BCEA5657B98C46EB845376665673E36A41C92490B1B85FCC3C81504B32B5935C",
+  "OutputFile": "D:\\Programming\\Uniserval Apps\\Calculator\\4th\\NaturplayCalculator\\artifacts\\math-benchmarks\\full-pipeline\\ln-sin-1-decimal-100000.txt",
+  "Runtime": ".NET 10.0.14",
+  "AssemblySha256": {
+    "NaturplayMath.Core": "AA8EF1A86B9676E4ED0AB66D1C7F0CCB5BA3DC6604F6283CEF75EE8B64AA4A45",
+    "NaturplayMath.Symbolics": "B6E9DF477202ED99A6299B890062B9A51A30FDBB50D2162098446E6CD077C8C7",
+    "NaturplayMath.Numerics": "021211334993F1E041B5AD6607597F6131C7A7B46E7B0FCAA1014806C31D3E52",
+    "NaturplayMath": "15BA2CDDD29BE6A77DD8E550D8A4103F4AB55D5016F1117A61594ADA58DDC14C"
+  },
+  "Pipeline": "exact text parse -\u003E symbolic simplification -\u003E certified evaluation -\u003E certified formatting",
+  "Prefix": "-0.1726037462690916785134109758639090698401084088964048049085363156679152268216482842250708690005714",
+  "Suffix": "6848669231717208010670737635098901794757736831543030448165893990159499721992038601772225636388429023"
+}

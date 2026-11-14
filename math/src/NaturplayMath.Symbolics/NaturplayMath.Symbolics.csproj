@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../NaturplayMath.Core/NaturplayMath.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="NaturplayMath.Numerics" />
+    <InternalsVisibleTo Include="NaturplayMath" />
+  </ItemGroup>
+</Project>
