@@ -76,7 +76,7 @@ namespace NaturplayCalculator.Expressions
                     left = ExpressionNode.Function(token.Text, argument, token.Index);
                 }
                 else if (token.Kind == TokenKind.Left) left = ParseGroup(token.Index, true);
-                else { Fail(); return null; }
+                else { Fail(token.Index, token.End - token.Index); return null; }
 
                 left = left.WithSourceRange(start, position == firstToken ? start : ConsumedEnd);
 
@@ -223,7 +223,7 @@ namespace NaturplayCalculator.Expressions
                         if (next == '\\' && i < text.Length) next = text[i++];
                         comment.Append(next);
                     }
-                    if (!closed && !preview) Fail();
+                    if (!closed && !preview) Fail(start, text.Length - start);
                     comments.Add(comment.ToString()); continue;
                 }
                 if (char.IsDigit(c) || c == '.')
@@ -231,10 +231,10 @@ namespace NaturplayCalculator.Expressions
                     bool digit = false, point = false;
                     while (i < text.Length && (char.IsDigit(text[i]) || text[i] == '.'))
                     {
-                        if (text[i] == '.') { if (point) { if (preview) break; Fail(); } point = true; } else digit = true;
+                        if (text[i] == '.') { if (point) { if (preview) break; Fail(i, 1); } point = true; } else digit = true;
                         i++;
                     }
-                    if (!digit && !preview) Fail();
+                    if (!digit && !preview) Fail(start, i - start);
                     if (i + 1 < text.Length && (text[i] == 'e' || text[i] == 'E'))
                     {
                         int exponent = i + 1;
@@ -275,11 +275,17 @@ namespace NaturplayCalculator.Expressions
                 if (char.IsLetter(c) || c == 'π' || c == '☺' || c == '?')
                 { tokens.Add(new Token(TokenKind.Symbol, c == '☺' ? "Ans" : c.ToString(), i++, 1)); continue; }
                 if (preview) { tokens.Add(new Token(TokenKind.Literal, c.ToString(), i++)); continue; }
-                Fail();
+                Fail(i, 1);
             }
             tokens.Add(new Token(TokenKind.End, "", text.Length));
         }
         private static bool StartsWith(string text, int index, string token) => index + token.Length <= text.Length && string.Compare(text, index, token, 0, token.Length, StringComparison.OrdinalIgnoreCase) == 0;
-        private static void Fail() => throw new MathException(CalculationResources.GetString("invalid_expression"));
+        private void Fail(int index = -1, int length = -1)
+        {
+            var token = position < tokens.Count ? Current : null;
+            if (index < 0) index = token?.Index ?? 0;
+            if (length < 0) length = token == null ? 1 : Math.Max(0, token.End - token.Index);
+            throw new MathException(CalculationResources.GetString("invalid_expression")).AtSource(index, length);
+        }
     }
 }

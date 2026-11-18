@@ -1,8 +1,8 @@
 # Naturplay Calculator
 
-Windows WinUI 3 自然书写计算器，支持数值计算、符号计算、复数、矩阵、统计，以及 JSON / XML 树形查看器。
+Windows WinUI 3 / macOS Uno 自然书写计算器，支持数值计算、符号计算、复数、矩阵、统计，以及 JSON / XML 树形查看器。Mac 版使用 AppKit 原生系统毛玻璃，复用相同计算与公式排版内核。
 
-[开发与验证](docs/development.md) · [文档导航](docs/README.md) · [贡献指南](CONTRIBUTING.md) · [安全报告](SECURITY.md)
+[开发与验证](docs/development.md) · [macOS 构建与验收](docs/macos.md) · [文档导航](docs/README.md) · [贡献指南](CONTRIBUTING.md) · [安全报告](SECURITY.md)
 
 ## 仓库结构
 
@@ -12,7 +12,7 @@ Windows WinUI 3 自然书写计算器，支持数值计算、符号计算、复�
 - `.github/`：CI、依赖更新和 Issue / PR 模板。
 - `math/`：[独立数学实验库](math/README.md)，使用 .NET 10 和独立 CI，不属于当前应用构建。
 
-首次贡献请先运行 `./scripts/check-repo.ps1` 和 `./scripts/test-scripts.ps1`。所有脚本要求 PowerShell 7.2+。
+首次贡献请先运行 `./scripts/check-repo.ps1` 和 `./scripts/test-scripts.ps1`。PowerShell 脚本要求 7.2+；Mac 应用可直接用 `./scripts/build-macos.sh --run` 构建并启动。
 
 ## 计算模式
 

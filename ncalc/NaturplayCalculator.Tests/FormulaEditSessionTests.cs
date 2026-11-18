@@ -57,9 +57,21 @@ namespace NaturplayCalculator.Tests
             var session = Click("7/9+2", "9");
             var deleted = session.Delete(session.Caret, 0, true);
             Assert.Equal("7/()+2", deleted.Text);
-            Assert.Equal(deleted.Text, session.Delete(deleted.Caret, 0, true).Text);
-            Assert.Equal(deleted.Text, session.Delete(deleted.Caret, 0, false).Text);
             Assert.Equal("7/(4)+2", session.Insert(deleted.Caret, 0, "4").Text);
+        }
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void DeletingAgainInAnEmptyDenominatorRemovesItsTemplateAndPreservesTheNumerator(bool backward)
+        {
+            var session = Click("7/9+2", "9");
+            var first = session.Delete(session.Caret, 0, true);
+            var collapsed = session.Delete(first.Caret, 0, backward);
+            Assert.Equal("7+2", collapsed.Text);
+            Assert.Equal(1, collapsed.Caret);
+            Assert.True(collapsed.ExitsFormulaScope);
+            Assert.Equal(collapsed.Text, session.Source);
+            Assert.Equal(collapsed.Text, session.Buffer);
         }
         [Fact]
         public void ReplacementCannotConsumeANeighbouringMatrixCell()

@@ -1,6 +1,7 @@
 # 文档导航
 
 - [开发与验证](development.md)：环境、仓库结构、脚本、CI、依赖升级和发布。
+- [macOS / Uno Desktop](macos.md)：AppKit 系统毛玻璃、构建打包、会话和实机验收。
 - [现代 .NET 与 WinUI 3](modern-dotnet.md)：平台边界、迁移与历史验证记录。
 - [TeX 渲染器](tex-renderer.md)：解析、布局、编辑协议和限制。
 - [XAML 与界面状态](ui-architecture.md)：样式复用、声明式状态、系统控件边界及 Slider 偏心说明。

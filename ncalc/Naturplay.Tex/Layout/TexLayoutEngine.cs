@@ -365,7 +365,7 @@ namespace Naturplay.Tex
                 Math.Max(0, glyph ? box.InkRight - box.InkLeft : box.Width), box.Ascent + box.Descent),
                 IsGlyph = box.Node.Kind == TexKind.Glyph, IsEmptySlot = box.Node.Kind == TexKind.Phantom, Depth = depth });
             foreach (var d in box.Drawing)
-                drawing.Add(new TexDrawCommand { Kind = d.Kind, Text = d.Text, Font = d.Font, FontSize = d.FontSize, Thickness = d.Thickness, Baseline = baseline + d.Baseline, OriginX = x + d.OriginX,
+                drawing.Add(new TexDrawCommand { Span = box.Node.Span, Kind = d.Kind, Text = d.Text, Font = d.Font, FontSize = d.FontSize, Thickness = d.Thickness, Baseline = baseline + d.Baseline, OriginX = x + d.OriginX,
                     Bounds = new TexRect(x + d.Bounds.X, baseline + d.Bounds.Y, d.Bounds.Width, d.Bounds.Height),
                     Points = d.Points.Select(p => new TexPoint(x + p.X, baseline + p.Y)).ToArray() });
             if (box.Node.Kind == TexKind.Row)

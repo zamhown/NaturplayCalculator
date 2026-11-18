@@ -76,13 +76,13 @@ namespace NaturplayCalculator.Tests
         [InlineData("(1,2,,3,4)^T")][InlineData("1.25e-3+2e4")]
         [InlineData("sin(cos(a))+Abs(a/b)")][InlineData("Cov(1,2,,3,4)")]
         [InlineData("[title: sample]sqrt(sin((9a+6)/6))")]
-        public void CompleteInputRetainsTheExistingMathematicalPresentation(string input)
+        public void CompleteInputRetainsTheWrittenMathematicalPresentation(string input)
         {
             var strict = new ExpressionParser().Parse(input);
             foreach (bool implicitProducts in new[] { false, true })
             {
                 var preview = ExpressionPreview.Create(input, implicitProducts);
-                Assert.Equal(new ExpressionTexFormatter().Format(strict.Root, implicitProducts).Latex, preview.Formula.Latex);
+                Assert.Equal(new ExpressionTexFormatter().Format(strict.Root, implicitProducts, inputSource: input).Latex, preview.Formula.Latex);
                 Assert.Equal(strict.Comments, preview.Comments);
             }
         }

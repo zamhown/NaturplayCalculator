@@ -16,7 +16,12 @@ namespace NaturplayCalculator.Tests
             var formula = ExpressionPreview.Create(source, true).Formula;
             var layout = new TexLayoutEngine().Render(formula.Latex);
             var map = new FormulaCaretMap(source, formula, layout);
-            Assert.Equal(new[] { 0, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 20, 21, 22, 23, 24 }, map.Slots.Select(s => s.TextIndex));
+            Assert.Equal(new[] { 0, 4, 6, 7, 8, 9, 10, 11, 13, 14, 14, 15, 16, 17, 20, 21, 22, 23, 24 }, map.Slots.Select(s => s.TextIndex));
+            // The denominator end and the parent row before the explicitly
+            // entered multiplication share a source index, but not a scope.
+            var fractionEdges = map.Slots.Where(s => s.TextIndex == 14).ToArray();
+            Assert.Equal(2, fractionEdges.Select(s => s.Geometry.Row).Distinct().Count());
+            Assert.Single(fractionEdges, s => s.FollowsFraction);
             Assert.Equal(map.Slots.Last().Geometry.Top, map.Slots[0].Geometry.Top, 6);
             Assert.Equal(map.Slots.Last().Geometry.Height, map.Slots[0].Geometry.Height, 6);
             Assert.Same(map.Slots[1], map.Move(map.Slots[0], 1));

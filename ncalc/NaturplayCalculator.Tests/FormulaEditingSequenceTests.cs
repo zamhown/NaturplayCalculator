@@ -53,16 +53,17 @@ namespace NaturplayCalculator.Tests
                 Source = edit.Text; Render();
                 Select(Map.AfterEdit(edit.Caret, Session.ContentStart, Session.ContentEnd));
             }
+            public void LeaveScope() => Select(Map.ParentScope(Session, Caret));
         }
 
         [Theory]
         [InlineData(false)][InlineData(true)]
-        public void ClosingAPredictedExponentDoesNotAppendAnExtraParenthesis(bool native)
+        public void LeavingAPredictedExponentWithNavigationDoesNotAppendAnExtraParenthesis(bool native)
         {
             var editor = new Editor("sin(√((9g-6)/9π))^(");
             editor.Select(editor.Map.Slots.First(s => s.Region != null && s.TextIndex == editor.Source.Length));
             editor.Type("2", native);
-            editor.Type(")", native);
+            editor.LeaveScope();
             Assert.Equal("sin(√((9g-6)/9π))^(2)", editor.Source);
             Assert.True(editor.Caret.IsRootEnd);
             Assert.NotNull(new ExpressionParser().Parse(editor.Source));
@@ -103,11 +104,9 @@ namespace NaturplayCalculator.Tests
         }
 
         [Theory]
-        [InlineData("2^3", "3", "2^3+1")]
-        [InlineData("2^(3)", "3", "2^(3)+1")]
-        [InlineData("sqrt(9)", "9", "sqrt(9)+1")]
         [InlineData("sin(9)", "9", "sin(9)+1")]
-        public void ClosingAScopeMovesOutBeforeFurtherTyping(string source, string glyph, string expected)
+        [InlineData("cos(9)", "9", "cos(9)+1")]
+        public void ClosingAParenthesizedFunctionMovesOutBeforeFurtherTyping(string source, string glyph, string expected)
         {
             var editor = new Editor(source); editor.Click(glyph);
             editor.Type(")", true); editor.Type("+", true); editor.Type("1", true);
@@ -118,11 +117,27 @@ namespace NaturplayCalculator.Tests
         [Fact]
         public void ConsecutiveClosingsLeaveNestedScopesOneAtATime()
         {
-            var editor = new Editor("sin(sqrt(9))"); editor.Click("9");
+            var editor = new Editor("sin(cos(9))"); editor.Click("9");
             editor.Type(")", true); Assert.False(editor.Caret.IsRootEnd);
             editor.Type(")", true); Assert.True(editor.Caret.IsRootEnd);
-            Assert.Equal("sin(sqrt(9))", editor.Source);
-            editor.Type("+1", true); Assert.Equal("sin(sqrt(9))+1", editor.Source);
+            Assert.Equal("sin(cos(9))", editor.Source);
+            editor.Type("+1", true); Assert.Equal("sin(cos(9))+1", editor.Source);
+        }
+
+        [Theory]
+        [InlineData("2^3", "3", "2^3+1")]
+        [InlineData("2^(3)", "3", "2^(3)+1")]
+        [InlineData("sqrt(9)", "9", "sqrt(9)+1")]
+        [InlineData("7/(9)", "9", "7/(9)+1")]
+        public void ClosingParenthesisCannotStandInForLeavingAnUnparenthesizedStructure(string source, string glyph, string expected)
+        {
+            var editor = new Editor(source); editor.Click(glyph);
+            editor.Type(")", true);
+            Assert.Equal(source, editor.Source);
+            Assert.True(editor.Session.IsScoped);
+            editor.LeaveScope();
+            editor.Type("+1", true);
+            Assert.Equal(expected, editor.Source);
         }
 
         [Theory]
@@ -137,8 +152,8 @@ namespace NaturplayCalculator.Tests
         }
 
         [Theory]
-        [InlineData("sqrt(", "sqrt()")]
-        [InlineData("2^(", "2^()")]
+        [InlineData("sin(", "sin()")]
+        [InlineData("cos(", "cos()")]
         public void ClosingAnEmptyPredictedScopeCompletesExactlyOneDelimiter(string source, string expected)
         {
             var editor = new Editor(source);

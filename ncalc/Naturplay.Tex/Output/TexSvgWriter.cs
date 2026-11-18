@@ -8,7 +8,7 @@ namespace Naturplay.Tex
     /// <summary>Headless export of exactly the same display list used by the native view.</summary>
     public static class TexSvgWriter
     {
-        public static string Write(TexRenderResult formula, string foreground = "#111111")
+        public static string Write(TexRenderResult formula, string foreground = "#111111", string fontFamily = "Cambria Math, Cambria, serif")
         {
             if (formula == null) throw new ArgumentNullException(nameof(formula));
             var text = new StringBuilder();
@@ -26,7 +26,7 @@ namespace Naturplay.Tex
                     {
                         writer.WriteStartElement("text");
                         writer.WriteAttributeString("x", F(command.OriginX)); writer.WriteAttributeString("y", F(command.Baseline));
-                        writer.WriteAttributeString("font-family", "Cambria Math, Cambria, serif");
+                        writer.WriteAttributeString("font-family", fontFamily);
                         writer.WriteAttributeString("font-size", F(command.FontSize));
                         writer.WriteAttributeString("font-style", command.Font == TexFont.MathItalic ? "italic" : "normal");
                         writer.WriteAttributeString("font-weight", command.Font == TexFont.Bold ? "bold" : "normal");

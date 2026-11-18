@@ -161,6 +161,12 @@ namespace NaturplayCalculator.Expressions
             switch (node.Text)
             {
                 case "/":
+                    if (IsLinearDivision(node))
+                    {
+                        Group(left, IsSum(left)); Token(@"\div ", node.SourceIndex);
+                        Group(right, Precedence(right) <= 20 || IsNegative(right));
+                        break;
+                    }
                     var fraction = Token(@"\frac", node.SourceIndex);
                     Token("{"); Scope(left); int numeratorEnd = text.Length;
                     Token("}{"); int denominatorStart = text.Length; Scope(right); Token("}");
@@ -176,7 +182,8 @@ namespace NaturplayCalculator.Expressions
                 case "+": case "-":
                     Write(left); Token(node.Text, node.SourceIndex); Group(right, node.Text == "-" && IsSum(right) || IsNegative(right)); break;
                 case "*":
-                    bool omitMultiply = implicitProducts && ExpressionFormatter.CanOmitMultiply(left, right);
+                    bool omitMultiply = source != null ? !IsExplicitProduct(node)
+                        : implicitProducts && ExpressionFormatter.CanOmitMultiply(left, right);
                     Group(left, IsSum(left) || omitMultiply && IsModulo(left));
                     if (!omitMultiply) Token(@"\times ", node.SourceIndex);
                     Group(right, IsSum(right) || IsNegative(right) || IsModulo(right)); break;
@@ -292,8 +299,11 @@ namespace NaturplayCalculator.Expressions
         private static bool IsModulo(ExpressionNode n) => n.Kind == ExpressionKind.Binary && n.Text == "mod";
         private static bool IsNegative(ExpressionNode n) => n.Kind == ExpressionKind.Unary || n.Kind == ExpressionKind.Number && n.Text.StartsWith("-", StringComparison.Ordinal);
         private static bool IsScientificNumber(ExpressionNode n) => n.Kind == ExpressionKind.Number && n.Text.IndexOfAny(new[] { 'e', 'E' }) >= 0;
-        private static int Precedence(ExpressionNode n) => n.Kind == ExpressionKind.Binary && (n.Text == "/" || n.Text == "yroot") ? 100 : ExpressionFormatter.Precedence(n);
-        private static bool NeedsUnaryGroup(ExpressionNode n) => IsNegative(n) || Precedence(n) < 25;
+        private bool IsLinearDivision(ExpressionNode n) => source != null && n.SourceIndex >= 0 && n.SourceIndex < source.Length && source[n.SourceIndex] == '÷';
+        private bool IsExplicitProduct(ExpressionNode n) => n.SourceIndex >= 0 && n.SourceIndex < source.Length && (source[n.SourceIndex] == '*' || source[n.SourceIndex] == '×');
+        private int Precedence(ExpressionNode n) => n.Kind == ExpressionKind.Binary && (n.Text == "/" && !IsLinearDivision(n) || n.Text == "yroot") ? 100
+            : n.Kind == ExpressionKind.Binary && n.Text == "*" && source != null && !IsExplicitProduct(n) ? 25 : ExpressionFormatter.Precedence(n);
+        private bool NeedsUnaryGroup(ExpressionNode n) => IsNegative(n) || Precedence(n) < 25;
         private static bool NeedsPowerBaseGroup(ExpressionNode n) => IsNegative(n) || IsScientificNumber(n) || n.Kind == ExpressionKind.DraftRow || n.Kind == ExpressionKind.Binary && n.Text != "yroot"
             || n.Kind == ExpressionKind.Function && n.Text == "transpose";
     }

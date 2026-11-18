@@ -51,6 +51,7 @@ namespace Naturplay.Tex
     public enum TexDrawKind { Glyph, Rule, Polyline, CubicCurve }
     public sealed class TexDrawCommand
     {
+        public TexSpan Span { get; internal set; }
         public TexDrawKind Kind { get; internal set; }
         public TexRect Bounds { get; internal set; }
         public string Text { get; internal set; } = "";

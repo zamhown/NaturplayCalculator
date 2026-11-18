@@ -32,15 +32,24 @@ namespace NaturplayCalculator.Model
         {
             CalculationContext.Check();
             T value;
-            switch (node.Kind)
+            try
             {
-                case ExpressionKind.Number: value = domain.Number(node.Text); break;
-                case ExpressionKind.Symbol: value = domain.Symbol(node.Text); break;
-                case ExpressionKind.Unary: value = domain.Negate(Visit(node.Children[0])); break;
-                case ExpressionKind.Binary: value = domain.Binary(node.Text, Visit(node.Children[0]), Visit(node.Children[1])); break;
-                case ExpressionKind.Function: value = domain.Function(node.Text, Visit(node.Children[0])); break;
-                case ExpressionKind.Matrix: value = domain.Matrix(node.Rows, node.Columns, node.Children.Select(Visit).ToArray()); break;
-                default: throw new InvalidOperationException();
+                switch (node.Kind)
+                {
+                    case ExpressionKind.Number: value = domain.Number(node.Text); break;
+                    case ExpressionKind.Symbol: value = domain.Symbol(node.Text); break;
+                    case ExpressionKind.Unary: value = domain.Negate(Visit(node.Children[0])); break;
+                    case ExpressionKind.Binary: value = domain.Binary(node.Text, Visit(node.Children[0]), Visit(node.Children[1])); break;
+                    case ExpressionKind.Function: value = domain.Function(node.Text, Visit(node.Children[0])); break;
+                    case ExpressionKind.Matrix: value = domain.Matrix(node.Rows, node.Columns, node.Children.Select(Visit).ToArray()); break;
+                    default: throw new InvalidOperationException();
+                }
+            }
+            catch (MathException error)
+            {
+                var operand = node.Kind == ExpressionKind.Binary && node.Text == "/" ? node.Children[1]
+                    : node.Kind == ExpressionKind.Function ? node.Children[0] : node;
+                throw error.AtSource(operand.SourceStart, operand.SourceLength);
             }
             if (steps.Count < maxSteps && node.Kind != ExpressionKind.Number)
             {
