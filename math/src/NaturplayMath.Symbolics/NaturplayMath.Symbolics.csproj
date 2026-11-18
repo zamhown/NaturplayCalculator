@@ -6,6 +6,7 @@
     <ProjectReference Include="../NaturplayMath.Core/NaturplayMath.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <InternalsVisibleTo Include="NaturplayMath.Tests" />
     <InternalsVisibleTo Include="NaturplayMath.Numerics" />
     <InternalsVisibleTo Include="NaturplayMath" />
   </ItemGroup>

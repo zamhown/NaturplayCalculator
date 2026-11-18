@@ -50,7 +50,7 @@ public readonly struct RealInterval : IEquatable<RealInterval>
     // Equal means both are the same point. Overlapping uncertainty never proves equality.
     public IntervalOrder Compare(RealInterval other) => Upper < other.Lower ? IntervalOrder.Less
         : Lower > other.Upper ? IntervalOrder.Greater
-        : IsExact && other.IsExact && Lower == other.Lower ? IntervalOrder.Equal : IntervalOrder.Undetermined;
+        : IsExact && other.IsExact ? IntervalOrder.Equal : IntervalOrder.Undetermined;
     internal static Rational Min(Rational a, Rational b) => a < b ? a : b;
     internal static Rational Max(Rational a, Rational b) => a > b ? a : b;
     public bool Equals(RealInterval other) => Lower == other.Lower && Upper == other.Upper;

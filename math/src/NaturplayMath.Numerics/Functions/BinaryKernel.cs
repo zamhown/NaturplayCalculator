@@ -140,7 +140,7 @@ internal sealed partial class BinaryKernel
         var b = new BinaryInterval(BinaryInterval.FloorDiv(numerator, denominator), BinaryInterval.CeilingDiv(numerator, denominator), Precision);
         return LogFromComplement(b) - LogTwo().Times(new BigInteger(m));
     }
-    private BigInteger Shift(BigInteger value, long bits)
+    internal BigInteger Shift(BigInteger value, long bits)
     {
         while (bits > int.MaxValue) { session.Check(); value <<= int.MaxValue; bits -= int.MaxValue; }
         return value << (int)bits;

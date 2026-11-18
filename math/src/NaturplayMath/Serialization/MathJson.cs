@@ -11,7 +11,7 @@ using NaturplayMath.Symbolics;
 namespace NaturplayMath.Serialization;
 
 /// <summary>Versioned lossless storage. Integers are strings; display text is never used for persistence.</summary>
-public static class MathJson
+public static partial class MathJson
 {
     public static string Serialize(ComplexExpression expression, ComputationContext? context = null)
     {
@@ -137,7 +137,7 @@ public static class MathJson
     private static Rational ParseRational(string text, ComputationSession session)
     {
         var parts = text.Split('/');
-        if (parts.Length is < 1 or > 2) throw new FormatException("Invalid rational.");
+        if (parts.Length > 2) throw new FormatException("Invalid rational.");
         return new(ParseInteger(parts[0], session), parts.Length == 1 ? BigInteger.One : ParseInteger(parts[1], session));
     }
     private static BigInteger ParseInteger(string text, ComputationSession session)
@@ -213,12 +213,11 @@ public static class MathJson
             case NodeKind.ComplexPowerImag:
                 node = ExpressionNormalizer.ComplexPower(kind, nodes, session);
                 conditions.Add(new DomainCondition(node, DomainRequirement.Defined)); break;
-            case NodeKind.Atan2:
-            case NodeKind.ComplexRootReal:
-            case NodeKind.ComplexRootImag:
+            // Kind and arity were validated above. The remaining kinds are
+            // Atan2, ComplexRootReal and ComplexRootImag.
+            default:
                 node = ExpressionNormalizer.ComplexPart(kind, nodes[0], nodes[1], session);
                 if (kind == NodeKind.Atan2) conditions.Add(new DomainCondition(node, DomainRequirement.Defined)); break;
-            default: throw new FormatException("Unsupported expression node.");
         }
         return new Expression(node, conditions);
     }

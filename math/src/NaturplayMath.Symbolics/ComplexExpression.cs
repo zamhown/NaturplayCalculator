@@ -65,7 +65,6 @@ public sealed record ComplexExpression
         if (exponent.IsReal && exponent.Real.TryGetRational(out var rational))
         {
             if (rational.IsInteger) return Pow(rational.Numerator, context);
-            if (IsZero && rational.Sign > 0) return Zero;
             if (rational == new Rational(1, 2)) return Sqrt();
         }
         return new(Expression.ComplexPowerPart(this, exponent, false, context), Expression.ComplexPowerPart(this, exponent, true, context));

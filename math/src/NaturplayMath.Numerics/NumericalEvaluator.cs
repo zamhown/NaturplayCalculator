@@ -155,14 +155,14 @@ public static class NumericalEvaluator
                                 return lowerInteger;
                             }
                             var n = Integer(args[0]);
-                            var value = node.Kind switch
+                            Rational value = node.Kind switch
                             {
                                 NodeKind.Factorial => Combinatorics.Factorial(n, false, session),
-                                NodeKind.DoubleFactorial => Combinatorics.Factorial(n, true, session),
+                                NodeKind.DoubleFactorial => Combinatorics.DoubleFactorial(n, session),
                                 NodeKind.Choose => Combinatorics.Choose(n, Integer(args[1]), session),
                                 _ => Combinatorics.Permute(n, Integer(args[1]), session)
                             };
-                            result = kernel.From(new Rational(value)); break;
+                            result = kernel.From(value); break;
                         default: throw new InvalidOperationException("Unknown expression node.");
                     }
                     cache[node.Key] = result; return result;

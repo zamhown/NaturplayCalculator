@@ -32,8 +32,9 @@ jobs:
           cache-dependency-path: math/**/packages.lock.json
       - name: Restore locked dependencies
         run: dotnet restore math/NaturplayMath.sln --locked-mode
-      - name: Test mathematical invariants and regressions
-        run: dotnet test math/NaturplayMath.sln --no-restore --configuration Release --blame-hang-timeout 2m --logger trx --results-directory artifacts/math-tests
+      - name: Test accuracy and enforce full line and branch coverage
+        shell: pwsh
+        run: ./math/tools/test-coverage.ps1
       - name: Run public API example
         run: dotnet run --project math/samples/NaturplayMath.Demo/NaturplayMath.Demo.csproj --no-restore --configuration Release
       - name: Upload test diagnostics
@@ -41,5 +42,8 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: math-tests-${{ matrix.os }}
-          path: artifacts/math-tests/**/*.trx
+          path: |
+            artifacts/math-coverage/**/*.trx
+            artifacts/math-coverage/**/summary.json
+            artifacts/math-coverage/**/coverage.*
           retention-days: 14

@@ -8,7 +8,7 @@ public static class ExpressionFormatter
     public static string Format(Expression expression)
     {
         ArgumentNullException.ThrowIfNull(expression);
-        return FormatNode(expression.Root) + (expression.Conditions.Count == 0 ? "" : " where " + string.Join(", ", expression.Conditions.Select(FormatCondition)));
+        return FormatNode(expression.Root) + ConditionSuffix(expression, false);
     }
     private static string FormatCondition(DomainCondition condition) => FormatNode(condition.ArgumentNode) + (condition.Requirement switch
     { DomainRequirement.NonZero => " != 0", DomainRequirement.Nonnegative => " >= 0", DomainRequirement.Defined => " is defined", _ => " > 0" });
@@ -28,8 +28,14 @@ public static class ExpressionFormatter
     public static string ToTeX(Expression expression)
     {
         ArgumentNullException.ThrowIfNull(expression);
-        return Tex(expression.Root) + (expression.Conditions.Count == 0 ? "" : @"\quad\text{where } " + string.Join(@",\;", expression.Conditions.Select(c => Tex(c.ArgumentNode)
-            + (c.Requirement switch { DomainRequirement.NonZero => @"\ne 0", DomainRequirement.Nonnegative => @"\ge 0", DomainRequirement.Defined => @"\text{ is defined}", _ => ">0" }))));
+        return Tex(expression.Root) + ConditionSuffix(expression, true);
+    }
+    internal static string ConditionSuffix(Expression expression, bool tex)
+    {
+        if (expression.Conditions.Count == 0) return "";
+        return tex ? @"\quad\text{where } " + string.Join(@",\;", expression.Conditions.Select(c => Tex(c.ArgumentNode)
+            + (c.Requirement switch { DomainRequirement.NonZero => @"\ne 0", DomainRequirement.Nonnegative => @"\ge 0", DomainRequirement.Defined => @"\text{ is defined}", _ => ">0" })))
+            : " where " + string.Join(", ", expression.Conditions.Select(FormatCondition));
     }
     private static string Tex(Node node) => node.Kind switch
     {

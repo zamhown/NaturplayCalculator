@@ -6,8 +6,15 @@ public static class Combinatorics
 {
     public static BigInteger Factorial(BigInteger n, ComputationContext? context = null)
         => Factorial(n, false, (context ?? ComputationContext.Default).Start());
-    public static BigInteger DoubleFactorial(BigInteger n, ComputationContext? context = null)
-        => Factorial(n, true, (context ?? ComputationContext.Default).Start());
+    public static Rational DoubleFactorial(BigInteger n, ComputationContext? context = null)
+        => DoubleFactorial(n, (context ?? ComputationContext.Default).Start());
+    internal static Rational DoubleFactorial(BigInteger n, ComputationSession session)
+    {
+        if (n.Sign >= 0) return new(Factorial(n, true, session));
+        if (n.IsEven) throw new MathDomainException("Double factorial is undefined at negative even integers.");
+        var count = (-n - 1) / 2;
+        return new(count.IsEven ? BigInteger.One : -BigInteger.One, Product(1, 2, count, session));
+    }
     internal static BigInteger Factorial(BigInteger n, bool twice, ComputationSession session)
     {
         if (n.Sign < 0) throw new MathDomainException("Factorial requires a nonnegative integer.");

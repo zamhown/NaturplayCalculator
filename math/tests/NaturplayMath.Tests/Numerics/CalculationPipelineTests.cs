@@ -73,7 +73,9 @@ public class CalculationPipelineTests
         var result = await CalculationEngine.CalculateAsync("ln(sin(1))", new(new NumberFormat(1000, trimTrailingZeros: false)),
             context: new(progress: new Observer(progress.Enqueue), progressInterval: TimeSpan.Zero));
         Assert.Equal(1003, result.Text.Length);
-        Assert.StartsWith("-0.172603746269091678513410975863909", result.Text);
+        using var referenceStream = typeof(CalculationPipelineTests).Assembly.GetManifestResourceStream("Reference.LnSinOne1000")!;
+        using var reference = System.Text.Json.JsonDocument.Parse(referenceStream);
+        Assert.Equal(reference.RootElement.GetProperty("value").GetString(), result.Text);
         Assert.Single(progress.Select(p => p.OperationId).Distinct());
         Assert.Equal(1, progress.Count(p => p.Stage == ComputationStage.Completed));
         Assert.Equal(ComputationStage.Completed, progress.Last().Stage);

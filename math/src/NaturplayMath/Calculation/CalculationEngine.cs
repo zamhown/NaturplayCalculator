@@ -45,7 +45,7 @@ public static class CalculationEngine
         var snapshot = variables?.ToDictionary(p => p.Key, p => p.Value, StringComparer.Ordinal);
         return RunAsync(c => Calculate(expression, options, snapshot, c), context, cancellationToken);
     }
-    private static async Task<T> RunAsync<T>(Func<ComputationContext, T> calculate,
+    internal static async Task<T> RunAsync<T>(Func<ComputationContext, T> calculate,
         ComputationContext? context, CancellationToken cancellationToken)
     {
         context ??= ComputationContext.Default;
@@ -70,7 +70,7 @@ public static class CalculationEngine
         catch (OperationCanceledException) { session.Report(ComputationStage.Cancelled, force: true); throw; }
         catch { session.Report(ComputationStage.Failed, force: true); throw; }
     }
-    private static (RealInterval Interval, string Text) EvaluateDisplay(Expression expression, CalculationOptions options, ComputationSession session)
+    internal static (RealInterval Interval, string Text) EvaluateDisplay(Expression expression, CalculationOptions options, ComputationSession session)
     {
         var scoped = session.BoundContext;
         int digits = checked(options.Format.FractionalDigits + 8);

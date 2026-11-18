@@ -3,11 +3,13 @@ namespace NaturplayMath.Numerics;
 
 internal sealed partial class BinaryKernel
 {
-    private enum SeriesKind { Sin, Cos, Exp }
-    private BinaryInterval Series(BigInteger numerator, int denominatorBits, SeriesKind kind)
+    internal enum SeriesKind { Sin, Cos, Exp }
+    // Bit-burst chunks are nonnegative and at most one. Their signs are applied
+    // by SmallSinCos or ExpPoint after the positive-argument series is evaluated.
+    internal BinaryInterval Series(BigInteger numerator, int denominatorBits, SeriesKind kind)
     {
+        if (numerator.Sign < 0) throw new InvalidOperationException("Series argument was not reduced.");
         if (numerator.IsZero) return kind == SeriesKind.Sin ? Zero : One;
-        bool negative = numerator.Sign < 0; numerator = BigInteger.Abs(numerator);
         int zeros = (int)((numerator & -numerator).GetBitLength() - 1);
         zeros = Math.Min(zeros, denominatorBits);
         numerator >>= zeros; denominatorBits -= zeros;
@@ -47,7 +49,7 @@ internal sealed partial class BinaryKernel
         if (kind == SeriesKind.Sin) { sum.T *= numerator; sum.Q *= denominator; }
         var result = new BinaryInterval(BinaryInterval.FloorDiv(sum.T << Precision, sum.Q) - 1,
             BinaryInterval.CeilingDiv(sum.T << Precision, sum.Q) + 1, Precision);
-        return negative && kind == SeriesKind.Sin ? -result : result;
+        return result;
     }
     private (BinaryInterval Sin, BinaryInterval Cos) SmallSinCos(BigInteger numerator, int denominatorBits)
     {

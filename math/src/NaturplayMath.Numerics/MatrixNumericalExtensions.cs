@@ -41,7 +41,19 @@ public static class MatrixNumericalExtensions
     {
         ArgumentNullException.ThrowIfNull(matrix); ArgumentNullException.ThrowIfNull(options);
         context ??= ComputationContext.Default;
-        var session = context.Start(); var scoped = context.Bind(session);
+        var session = context.Start();
+        try
+        {
+            int result = RankCore(matrix, options, variables, session);
+            session.Report(ComputationStage.Completed, "certified matrix rank", force: true);
+            return result;
+        }
+        catch (OperationCanceledException) { session.Report(ComputationStage.Cancelled, force: true); throw; }
+        catch { session.Report(ComputationStage.Failed, force: true); throw; }
+    }
+    internal static int RankCore(ExpressionMatrix matrix, ApproximationOptions options,
+        IReadOnlyDictionary<string, Rational>? variables, ComputationSession session)
+    {
         bool? Zero(ComplexExpression entry)
         {
             var real = NumericalEvaluator.EvaluateCore(entry.Real, () => options.AbsoluteTolerance, options.MaxRefinements, variables, session);
@@ -49,15 +61,8 @@ public static class MatrixNumericalExtensions
             if (!real.ContainsZero || !imaginary.ContainsZero) return false;
             return real.IsExact && imaginary.IsExact ? true : null;
         }
-        try
-        {
-            for (int i = 0; i < matrix.Rows; i++) for (int j = 0; j < matrix.Columns; j++) Zero(matrix[i, j]);
-            int result = matrix.Rank(scoped, Zero);
-            session.Report(ComputationStage.Completed, "certified matrix rank", force: true);
-            return result;
-        }
-        catch (OperationCanceledException) { session.Report(ComputationStage.Cancelled, force: true); throw; }
-        catch { session.Report(ComputationStage.Failed, force: true); throw; }
+        for (int i = 0; i < matrix.Rows; i++) for (int j = 0; j < matrix.Columns; j++) Zero(matrix[i, j]);
+        return matrix.Rank(session.BoundContext, Zero);
     }
     public static async Task<MatrixEnclosure> ApproximateAsync(this ExpressionMatrix matrix, ApproximationOptions options,
         IReadOnlyDictionary<string, Rational>? variables = null, ComputationContext? context = null, CancellationToken cancellationToken = default)

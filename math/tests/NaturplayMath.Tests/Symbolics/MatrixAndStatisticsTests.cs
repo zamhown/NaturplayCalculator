@@ -52,7 +52,7 @@ public class MatrixAndStatisticsTests
         Assert.Equal(ComplexExpression.Constant(new Rational(2, 3)), SymbolicStatistics.Variance(x));
         Assert.Equal(ComplexExpression.Constant(new Rational(4, 3)), SymbolicStatistics.Covariance(x, y));
         Assert.True(SymbolicStatistics.Correlation(x, y).Approximate(40).Real.Contains(Rational.One));
-        Assert.Equal(ComplexExpression.Integer(-1), SymbolicStatistics.Variance(new[] { ComplexExpression.I, -ComplexExpression.I }));
+        Assert.Equal(ComplexExpression.One, SymbolicStatistics.Variance(new[] { ComplexExpression.I, -ComplexExpression.I }));
         Assert.Throws<DivideByZeroException>(() => SymbolicStatistics.Correlation(new[] { ComplexExpression.One }, new[] { ComplexExpression.One }));
     }
 }

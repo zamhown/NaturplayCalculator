@@ -21,7 +21,7 @@ internal static class DomainNormalizer
             if (argument.Kind == NodeKind.Constant)
             {
                 if ((SignBit(argument.Value.Sign) & Allowed(requirement)) == 0)
-                    throw new MathDomainException("Domain condition failed: " + new DomainCondition(argument, requirement));
+                    throw new MathDomainException("Domain condition failed: " + new DomainCondition(argument, requirement).ToString());
                 return;
             }
             if (ExpressionNormalizer.IsPositive(argument)) return;

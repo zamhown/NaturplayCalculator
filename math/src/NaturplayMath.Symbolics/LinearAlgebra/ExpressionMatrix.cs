@@ -149,7 +149,8 @@ public sealed class ExpressionMatrix
     /// <summary>Exact rank; refuses an unproved symbolic zero test. Supply a certified zero classifier for other domains.</summary>
     public int Rank(ComputationContext? context = null, Func<ComplexExpression, bool?>? isZero = null)
     {
-        if (isZero is null && values.Cast<ComplexExpression>().Any(v => v.Real.Conditions.Count != 0 || v.Imaginary.Conditions.Count != 0))
+        // ComplexExpression gives both components the same union of domain conditions.
+        if (isZero is null && values.Cast<ComplexExpression>().Any(v => v.Real.Conditions.Count != 0))
             throw new UndeterminedRankException();
         isZero ??= value => value.IsZero ? true : value.Real.TryGetRational(out var r) && value.Imaginary.TryGetRational(out var i) ? r.IsZero && i.IsZero : null;
         var session = (context ?? ComputationContext.Default).Start();

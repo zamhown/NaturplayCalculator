@@ -175,10 +175,10 @@ internal static class ExpressionNormalizer
             return Node.Constant(new Rational(kind == NodeKind.Floor ? a.Floor() : kind == NodeKind.Ceiling ? a.Ceiling() : a.Truncate()));
         if (args.Any(a => !a.Value.IsInteger)) throw new MathDomainException("This operation requires integer arguments.");
         var n = a.Numerator;
+        if (kind == NodeKind.DoubleFactorial) return Node.Constant(Combinatorics.DoubleFactorial(n, session));
         var result = kind switch
         {
             NodeKind.Factorial => Combinatorics.Factorial(n, false, session),
-            NodeKind.DoubleFactorial => Combinatorics.Factorial(n, true, session),
             NodeKind.Choose => Combinatorics.Choose(n, args[1].Value.Numerator, session),
             NodeKind.Permute => Combinatorics.Permute(n, args[1].Value.Numerator, session),
             _ => throw new InvalidOperationException("Unknown discrete operation.")

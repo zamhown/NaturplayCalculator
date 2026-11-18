@@ -32,7 +32,7 @@ internal sealed class RealExpressionDomain(ExpressionParseOptions options, Compu
     };
     public Expression Function(string name, IReadOnlyList<Expression> args, int position)
     {
-        int arity = name is "root" or "pow" or "choose" or "permute" or "ncr" or "npr" or "mod" or "log" ? 2 : 1;
+        int arity = ExpressionParser.ScalarArity(name);
         if (args.Count != arity) throw new ExpressionSyntaxException($"{name} requires {arity} argument(s)", position);
         var x = args[0];
         Expression ToRadians(Expression value) => options.AngleUnit == AngleUnit.Degrees ? value.Multiply(Expression.Pi, context).Divide(Expression.Integer(180), context) : value;
@@ -119,7 +119,7 @@ internal sealed class ComplexExpressionDomain(ExpressionParseOptions options, Co
     }
     public ComplexExpression Function(string name, IReadOnlyList<ComplexExpression> args, int position)
     {
-        int arity = name is "root" or "pow" or "choose" or "permute" or "ncr" or "npr" or "mod" or "log" ? 2 : 1;
+        int arity = ExpressionParser.ScalarArity(name);
         if (args.Count != arity) throw new ExpressionSyntaxException($"{name} requires {arity} argument(s)", position);
         var x = args[0];
         ComplexExpression ToRadians(ComplexExpression value) => options.AngleUnit == AngleUnit.Degrees

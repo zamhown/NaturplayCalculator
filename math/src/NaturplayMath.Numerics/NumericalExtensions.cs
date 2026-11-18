@@ -19,11 +19,11 @@ public static class NumericalExtensions
     {
         ArgumentNullException.ThrowIfNull(expression);
         if (fractionalDigits < 0) throw new ArgumentOutOfRangeException(nameof(fractionalDigits));
-        radix ??= 10;
-        if (radix < 2) throw new ArgumentOutOfRangeException(nameof(radix));
+        var basis = radix ?? 10;
+        if (basis < 2) throw new ArgumentOutOfRangeException(nameof(radix));
         if (maxRefinements < 1) throw new ArgumentOutOfRangeException(nameof(maxRefinements));
         var session = (context ?? ComputationContext.Default).Start();
-        return NumericalEvaluator.Evaluate(expression, () => new Rational(1, IntegerMath.Pow(radix.Value, fractionalDigits, session)),
+        return NumericalEvaluator.Evaluate(expression, () => new Rational(1, IntegerMath.Pow(basis, fractionalDigits, session)),
             maxRefinements, variables, session);
     }
 }

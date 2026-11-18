@@ -1,6 +1,6 @@
 namespace NaturplayMath.Symbolics;
 
-/// <summary>Population moments, preserving NaturplayCalculator's non-conjugate complex covariance convention.</summary>
+/// <summary>Population moments. Covariance conjugates its second argument; variance is real and nonnegative.</summary>
 public static class SymbolicStatistics
 {
     public static ComplexExpression Mean(IReadOnlyList<ComplexExpression> values, ComputationContext? context = null)
@@ -20,7 +20,7 @@ public static class SymbolicStatistics
         context ??= ComputationContext.Default;
         var session = context.Start(); var scoped = context.Bind(session);
         var mx = Mean(x, scoped); var my = Mean(y, scoped); var sum = ComplexExpression.Zero;
-        for (int i = 0; i < x.Count; i++) { session.Check(); sum += (x[i] - mx) * (y[i] - my); }
+        for (int i = 0; i < x.Count; i++) { session.Check(); sum += (x[i] - mx) * (y[i] - my).Conjugate(); }
         return sum / ComplexExpression.Integer(x.Count);
     }
     public static ComplexExpression Correlation(IReadOnlyList<ComplexExpression> x, IReadOnlyList<ComplexExpression> y, ComputationContext? context = null)

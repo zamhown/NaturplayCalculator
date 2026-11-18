@@ -10,6 +10,32 @@ namespace NaturplayMath.Symbolics;
 public sealed class Expression : IEquatable<Expression>
 {
     internal Node Root { get; }
+    /// <summary>Stable structural head; inspecting an expression never evaluates it numerically.</summary>
+    public string Head => Root.Kind.ToString();
+    public string? SymbolName => Root.Kind == NodeKind.Symbol ? Root.Name : null;
+    /// <summary>Literal payload only; domain conditions still apply. TryGetRational requires no remaining conditions.</summary>
+    public Rational? ConstantValue => Root.Kind == NodeKind.Constant ? Root.Value : null;
+    /// <summary>Exponent for Power, degree for Root; other heads have no integer exponent.</summary>
+    public BigInteger? IntegerExponent => Root.Kind is NodeKind.Power or NodeKind.Root ? Root.Exponent : null;
+    public IReadOnlyList<Expression> Arguments => Array.AsReadOnly(Root.Children.Select(WithIntrinsicConditions).ToArray());
+    /// <summary>Includes symbols that occur only in retained domain conditions.</summary>
+    public IReadOnlyList<string> FreeSymbols
+    {
+        get
+        {
+            var names = new SortedSet<string>(StringComparer.Ordinal);
+            var seen = new HashSet<Node>();
+            void Visit(Node node)
+            {
+                if (!seen.Add(node)) return;
+                if (node.Kind == NodeKind.Symbol) names.Add(node.Name);
+                foreach (var child in node.Children) Visit(child);
+            }
+            Visit(Root);
+            foreach (var guard in Conditions) Visit(guard.ArgumentNode);
+            return Array.AsReadOnly(names.ToArray());
+        }
+    }
     public IReadOnlyList<DomainCondition> Conditions { get; }
     private readonly string key;
     internal Expression(Node root, IEnumerable<DomainCondition> conditions)
