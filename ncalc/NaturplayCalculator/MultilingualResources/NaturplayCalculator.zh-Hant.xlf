@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="zh-Hant" original="NATURPLAYCALCULATOR/STRINGS/ZH-CN/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="NATURPLAYCALCULATOR/STRINGS/EN/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="AppName" translate="yes" xml:space="preserve">
+          <source>Naturplay Calculator</source>
+          <target state="new">Naturplay Calculator</target>
+        </trans-unit>
+        <trans-unit id="button_close.Content" translate="yes" xml:space="preserve">
+          <source>Close</source>
+          <target state="new">Close</target>
+        </trans-unit>
+        <trans-unit id="button_help.Content" translate="yes" xml:space="preserve">
+          <source>Help</source>
+          <target state="new">Help</target>
+        </trans-unit>
+        <trans-unit id="button_rate.Content" translate="yes" xml:space="preserve">
+          <source>Rate Me!</source>
+          <target state="new">Rate Me!</target>
+        </trans-unit>
+        <trans-unit id="Description" translate="yes" xml:space="preserve">
+          <source>A simple tool to calculate mathematical expressions with output in natural handwriting style</source>
+          <target state="new">A simple tool to calculate mathematical expressions with output in natural handwriting style</target>
+        </trans-unit>
+        <trans-unit id="menu_bangzhu.Text" translate="yes" xml:space="preserve">
+          <source>Help</source>
+          <target state="new">Help</target>
+        </trans-unit>
+        <trans-unit id="menu_black.Text" translate="yes" xml:space="preserve">
+          <source>White text on black backgroud</source>
+          <target state="new">White text on black backgroud</target>
+        </trans-unit>
+        <trans-unit id="menu_copy.Text" translate="yes" xml:space="preserve">
+          <source>Copy</source>
+          <target state="new">Copy</target>
+        </trans-unit>
+        <trans-unit id="menu_guanyu.Text" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="new">About</target>
+        </trans-unit>
+        <trans-unit id="menu_hudu.Text" translate="yes" xml:space="preserve">
+          <source>Radian mode</source>
+          <target state="new">Radian mode</target>
+        </trans-unit>
+        <trans-unit id="menu_jiaodu.Text" translate="yes" xml:space="preserve">
+          <source>Degree mode</source>
+          <target state="new">Degree mode</target>
+        </trans-unit>
+        <trans-unit id="menu_jietu.Text" translate="yes" xml:space="preserve">
+          <source>Save the results as a picture</source>
+          <target state="new">Save the results as a picture</target>
+        </trans-unit>
+        <trans-unit id="menu_paste.Text" translate="yes" xml:space="preserve">
+          <source>Paste</source>
+          <target state="new">Paste</target>
+        </trans-unit>
+        <trans-unit id="menu_tongshi.Text" translate="yes" xml:space="preserve">
+          <source>Calculate while inputting</source>
+          <target state="new">Calculate while inputting</target>
+        </trans-unit>
+        <trans-unit id="menu_white.Text" translate="yes" xml:space="preserve">
+          <source>Black text on white backgroud</source>
+          <target state="new">Black text on white backgroud</target>
+        </trans-unit>
+        <trans-unit id="msg_about" translate="yes" xml:space="preserve">
+          <source>This app is capable of carrying scientific calculations in different steps with output in handwriting style. It supports the basic matrix operations, statistical calculations, complex operation. This application can wake up through the Cortana. Say "Cortana, calculator" or "Cortana, I wanna calculate" to open the application.</source>
+          <target state="new">This app is capable of carrying scientific calculations in different steps with output in handwriting style. It supports the basic matrix operations, statistical calculations, complex operation. This application can wake up through the Cortana. Say "Cortana, calculator" or "Cortana, I wanna calculate" to open the application.</target>
+        </trans-unit>
+        <trans-unit id="msg_about_copyright" translate="yes" xml:space="preserve">
+          <source>Copyright © 2015-2016 by Zamhown</source>
+          <target state="new">Copyright © 2015-2016 by Zamhown</target>
+        </trans-unit>
+        <trans-unit id="msg_about_tail" translate="yes" xml:space="preserve">
+          <source>If you like this App or have any questions about it, please go to the App store to rate it or write a feedback. Thank you!</source>
+          <target state="new">If you like this App or have any questions about it, please go to the App store to rate it or write a feedback. Thank you!</target>
+        </trans-unit>
+        <trans-unit id="msg_about_version" translate="yes" xml:space="preserve">
+          <source>Version: </source>
+          <target state="new">Version: </target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_1" translate="yes" xml:space="preserve">
+          <source>Use brackets to represent matrix. Use comma to separate the elements in the row inside the matrix. Use two consecutive commas to separate each line. E.g. Enter (6,2,,3,1) represents a two-by-two matrix.</source>
+          <target state="new">Use brackets to represent matrix. Use comma to separate the elements in the row inside the matrix. Use two consecutive commas to separate each line. E.g. Enter (6,2,,3,1) represents a two-by-two matrix.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_1" translate="yes" xml:space="preserve">
+          <source>1, nCr: combinations,  "A nCr B" represents the number of ways of picking B unordered outcomes from A possibilities</source>
+          <target state="new">1, nCr: combinations,  "A nCr B" represents the number of ways of picking B unordered outcomes from A possibilities</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_2" translate="yes" xml:space="preserve">
+          <source>2, nPr: permutations, "A nPr B" represents the number of ways of obtaining an ordered subset of B elements from a set of A elements</source>
+          <target state="new">2, nPr: permutations, "A nPr B" represents the number of ways of obtaining an ordered subset of B elements from a set of A elements</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_3" translate="yes" xml:space="preserve">
+          <source>3, ASIN: arcsin,ACOS, ATAN empathy.</source>
+          <target state="new">3, ASIN: arcsin,ACOS, ATAN empathy.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_4" translate="yes" xml:space="preserve">
+          <source>4, Abs: for example "Abs n" expresses the absolute value of n can also be used in matrix form, such as "Abs (6,2,,3,1)" represents a two-by-two determinant.</source>
+          <target state="new">4, Abs: for example "Abs n" expresses the absolute value of n can also be used in matrix form, such as "Abs (6,2,,3,1)" represents a two-by-two determinant.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_5" translate="yes" xml:space="preserve">
+          <source>5, T: used for matrices, such as "(6,2,,3,1) ^T," said matrix (6,2,,3,1) transpose of.</source>
+          <target state="new">5, T: used for matrices, such as "(6,2,,3,1) ^T," said matrix (6,2,,3,1) transpose of.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_6" translate="yes" xml:space="preserve">
+          <source>6, Ex: average of several numbers. Input combined with matrix form, for example, "e (1,2,3,4)" meaning average number of 1, 2, 3, 4.</source>
+          <target state="new">6, Ex: average of several numbers. Input combined with matrix form, for example, "e (1,2,3,4)" meaning average number of 1, 2, 3, 4.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_2_7" translate="yes" xml:space="preserve">
+          <source>7, Dx: number of several variance. Input combined with matrix form, for example "d (1,2,3,4)" means 1, 2, 3 and 4 of the variance.</source>
+          <target state="new">7, Dx: number of several variance. Input combined with matrix form, for example "d (1,2,3,4)" means 1, 2, 3 and 4 of the variance.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_3" translate="yes" xml:space="preserve">
+          <source>complex numbers can only be produced when calculating the square root. Use "I" button to insert imaginary number I. This Application supports the arithmetic calculation of complex numbers, modulus (Abs operator), and seeking positive integer exponent power.</source>
+          <target state="new">complex numbers can only be produced when calculating the square root. Use "I" button to insert imaginary number I. This Application supports the arithmetic calculation of complex numbers, modulus (Abs operator), and seeking positive integer exponent power.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_content_4" translate="yes" xml:space="preserve">
+          <source>You can enter a constant in the left corner of the keypad (with three butoons next to each other). Where e is the natural base, π is PI, I is the imaginary unit.</source>
+          <target state="new">You can enter a constant in the left corner of the keypad (with three butoons next to each other). Where e is the natural base, π is PI, I is the imaginary unit.</target>
+        </trans-unit>
+        <trans-unit id="msg_help_head" translate="yes" xml:space="preserve">
+          <source>This application operates in a similar way with the normal scientific calculator, however, some areas should be aware of:</source>
+          <target state="new">This application operates in a similar way with the normal scientific calculator, however, some areas should be aware of:</target>
+        </trans-unit>
+        <trans-unit id="msg_help_topic_1" translate="yes" xml:space="preserve">
+          <source>First, how to enter the matrix:</source>
+          <target state="new">First, how to enter the matrix:</target>
+        </trans-unit>
+        <trans-unit id="msg_help_topic_2" translate="yes" xml:space="preserve">
+          <source>Second, some operator descriptions:</source>
+          <target state="new">Second, some operator descriptions:</target>
+        </trans-unit>
+        <trans-unit id="msg_help_topic_3" translate="yes" xml:space="preserve">
+          <source>Third, complex number calculation:</source>
+          <target state="new">Third, complex number calculation:</target>
+        </trans-unit>
+        <trans-unit id="msg_help_topic_4" translate="yes" xml:space="preserve">
+          <source>Four, constant input:</source>
+          <target state="new">Four, constant input:</target>
+        </trans-unit>
+        <trans-unit id="msg_savefailed" translate="yes" xml:space="preserve">
+          <source>Save failed! Low on memory or other errors may occur.</source>
+          <target state="new">Save failed! Low on memory or other errors may occur.</target>
+        </trans-unit>
+        <trans-unit id="msg_savesuccess" translate="yes" xml:space="preserve">
+          <source>Successfully saved!</source>
+          <target state="new">Successfully saved!</target>
+        </trans-unit>
+        <trans-unit id="error_0" translate="yes" xml:space="preserve">
+          <source>Please enter an expression!</source>
+          <target state="new">Please enter an expression!</target>
+        </trans-unit>
+        <trans-unit id="error_1" translate="yes" xml:space="preserve">
+          <source>Expression is not correct! Operators should not be followed by another operator, please add brackets</source>
+          <target state="new">Expression is not correct! Operators should not be followed by another operator, please add brackets</target>
+        </trans-unit>
+        <trans-unit id="error_10" translate="yes" xml:space="preserve">
+          <source>Expression is not correct! Check the operator's syntax is correct</source>
+          <target state="new">Expression is not correct! Check the operator's syntax is correct</target>
+        </trans-unit>
+        <trans-unit id="error_11" translate="yes" xml:space="preserve">
+          <source>Expression is not correct! Check to see if the number of elements in each row of the matrix is equal</source>
+          <target state="new">Expression is not correct! Check to see if the number of elements in each row of the matrix is equal</target>
+        </trans-unit>
+        <trans-unit id="error_12" translate="yes" xml:space="preserve">
+          <source>Parentheses do not match! Redundant parentheses on the right, check the expression</source>
+          <target state="new">Parentheses do not match! Redundant parentheses on the right, check the expression</target>
+        </trans-unit>
+        <trans-unit id="error_13" translate="yes" xml:space="preserve">
+          <source>You entered an expression that has an error, check your expression!</source>
+          <target state="new">You entered an expression that has an error, check your expression!</target>
+        </trans-unit>
+        <trans-unit id="error_14" translate="yes" xml:space="preserve">
+          <source>The negative even does not support double factorial!</source>
+          <target state="new">The negative even does not support double factorial!</target>
+        </trans-unit>
+        <trans-unit id="error_15" translate="yes" xml:space="preserve">
+          <source>You entered an expression that has the numerical error!</source>
+          <target state="new">You entered an expression that has the numerical error!</target>
+        </trans-unit>
+        <trans-unit id="error_16" translate="yes" xml:space="preserve">
+          <source>Matrix does not support this operation!</source>
+          <target state="new">Matrix does not support this operation!</target>
+        </trans-unit>
+        <trans-unit id="error_17" translate="yes" xml:space="preserve">
+          <source>Non-real numbers are not supported this operation!</source>
+          <target state="new">Non-real numbers are not supported this operation!</target>
+        </trans-unit>
+        <trans-unit id="error_18" translate="yes" xml:space="preserve">
+          <source>Negative numbers are not supported in this operation!</source>
+          <target state="new">Negative numbers are not supported in this operation!</target>
+        </trans-unit>
+        <trans-unit id="error_19" translate="yes" xml:space="preserve">
+          <source>You entered an expression that has the numerical error! The format is incorrect</source>
+          <target state="new">You entered an expression that has the numerical error! The format is incorrect</target>
+        </trans-unit>
+        <trans-unit id="error_2" translate="yes" xml:space="preserve">
+          <source>Expression is not correct! Constants should not be followed by numbers, please add an operator</source>
+          <target state="new">Expression is not correct! Constants should not be followed by numbers, please add an operator</target>
+        </trans-unit>
+        <trans-unit id="error_20" translate="yes" xml:space="preserve">
+          <source>The matrix is not square!</source>
+          <target state="new">The matrix is not square!</target>
+        </trans-unit>
+        <trans-unit id="error_21" translate="yes" xml:space="preserve">
+          <source>Illegal characters in the expression! Please check the expression</source>
+          <target state="new">Illegal characters in the expression! Please check the expression</target>
+        </trans-unit>
+        <trans-unit id="error_22" translate="yes" xml:space="preserve">
+          <source>Formula error!</source>
+          <target state="new">Formula error!</target>
+        </trans-unit>
+        <trans-unit id="error_23" translate="yes" xml:space="preserve">
+          <source>Matrix cannot add with numbers!</source>
+          <target state="new">Matrix cannot add with numbers!</target>
+        </trans-unit>
+        <trans-unit id="error_24" translate="yes" xml:space="preserve">
+          <source>Matrix cannot subtract numbers!</source>
+          <target state="new">Matrix cannot subtract numbers!</target>
+        </trans-unit>
+        <trans-unit id="error_25" translate="yes" xml:space="preserve">
+          <source>Division of two matrics is not supported!</source>
+          <target state="new">Division of two matrics is not supported!</target>
+        </trans-unit>
+        <trans-unit id="error_26" translate="yes" xml:space="preserve">
+          <source>Divide matrix by number is not supported!</source>
+          <target state="new">Divide matrix by number is not supported!</target>
+        </trans-unit>
+        <trans-unit id="error_27" translate="yes" xml:space="preserve">
+          <source>Multiplication of two matrics is not supported!</source>
+          <target state="new">Multiplication of two matrics is not supported!</target>
+        </trans-unit>
+        <trans-unit id="error_28" translate="yes" xml:space="preserve">
+          <source>Non-real numbers cannot be used as exponent!</source>
+          <target state="new">Non-real numbers cannot be used as exponent!</target>
+        </trans-unit>
+        <trans-unit id="error_29" translate="yes" xml:space="preserve">
+          <source>Index of matrix power error!</source>
+          <target state="new">Index of matrix power error!</target>
+        </trans-unit>
+        <trans-unit id="error_3" translate="yes" xml:space="preserve">
+          <source>Expression is not correct! T is the matrix transpose mark which can only be the matrix exponential</source>
+          <target state="new">Expression is not correct! T is the matrix transpose mark which can only be the matrix exponential</target>
+        </trans-unit>
+        <trans-unit id="error_30" translate="yes" xml:space="preserve">
+          <source>Using matrix as exponent is not supported!</source>
+          <target state="new">Using matrix as exponent is not supported!</target>
+        </trans-unit>
+        <trans-unit id="error_31" translate="yes" xml:space="preserve">
+          <source>Two matrices are not the same type of matrix!</source>
+          <target state="new">Two matrices are not the same type of matrix!</target>
+        </trans-unit>
+        <trans-unit id="error_32" translate="yes" xml:space="preserve">
+          <source>The number of columns of  Matrix A does not equal to the number of rows of Matrix B</source>
+          <target state="new">The number of columns of  Matrix A does not equal to the number of rows of Matrix B</target>
+        </trans-unit>
+        <trans-unit id="error_33" translate="yes" xml:space="preserve">
+          <source>The matrix is not invertible!</source>
+          <target state="new">The matrix is not invertible!</target>
+        </trans-unit>
+        <trans-unit id="error_34" translate="yes" xml:space="preserve">
+          <source>The matrix is not square!</source>
+          <target state="new">The matrix is not square!</target>
+        </trans-unit>
+        <trans-unit id="error_4" translate="yes" xml:space="preserve">
+          <source>Please enter full expressions!</source>
+          <target state="new">Please enter full expressions!</target>
+        </trans-unit>
+        <trans-unit id="error_5" translate="yes" xml:space="preserve">
+          <source>Please enter full expressions and match brackets!</source>
+          <target state="new">Please enter full expressions and match brackets!</target>
+        </trans-unit>
+        <trans-unit id="error_6" translate="yes" xml:space="preserve">
+          <source>Parentheses do not match! Left parenthesis redundant, please check the expression</source>
+          <target state="new">Parentheses do not match! Left parenthesis redundant, please check the expression</target>
+        </trans-unit>
+        <trans-unit id="error_7" translate="yes" xml:space="preserve">
+          <source>Please complete the next row of the matrix!</source>
+          <target state="new">Please complete the next row of the matrix!</target>
+        </trans-unit>
+        <trans-unit id="error_8" translate="yes" xml:space="preserve">
+          <source>Please enter a complete matrix!</source>
+          <target state="new">Please enter a complete matrix!</target>
+        </trans-unit>
+        <trans-unit id="error_9" translate="yes" xml:space="preserve">
+          <source>At least lack the number of elements is:</source>
+          <target state="new">At least lack the number of elements is:</target>
+        </trans-unit>
+        <trans-unit id="save_button" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="new">Save</target>
+        </trans-unit>
+        <trans-unit id="save_name" translate="yes" xml:space="preserve">
+          <source>Result</source>
+          <target state="new">Result</target>
+        </trans-unit>
+        <trans-unit id="save_type" translate="yes" xml:space="preserve">
+          <source>Picture</source>
+          <target state="new">Picture</target>
+        </trans-unit>
+        <trans-unit id="tileText" translate="yes" xml:space="preserve">
+          <source>Last Result</source>
+          <target state="new">Last Result</target>
+        </trans-unit>
+        <trans-unit id="AppShortName" translate="yes" xml:space="preserve">
+          <source>NaturplayCalc</source>
+          <target state="new">NaturplayCalc</target>
+        </trans-unit>
+        <trans-unit id="menu_clickFirst.Text" translate="yes" xml:space="preserve">
+          <source>Mouse is preferred</source>
+          <target state="new">Mouse is preferred</target>
+        </trans-unit>
+        <trans-unit id="menu_landScapeMode.Text" translate="yes" xml:space="preserve">
+          <source>Landscape mode setting</source>
+          <target state="new">Landscape mode setting</target>
+        </trans-unit>
+        <trans-unit id="menu_tapFirst.Text" translate="yes" xml:space="preserve">
+          <source>Touch is preferred</source>
+          <target state="new">Touch is preferred</target>
+        </trans-unit>
+        <trans-unit id="button_donate0.Content" translate="yes" xml:space="preserve">
+          <source>Donate a little</source>
+          <target state="new">Donate a little</target>
+        </trans-unit>
+        <trans-unit id="button_donate1.Content" translate="yes" xml:space="preserve">
+          <source>Donate some</source>
+          <target state="new">Donate some</target>
+        </trans-unit>
+        <trans-unit id="button_donate2.Content" translate="yes" xml:space="preserve">
+          <source>Donate a lot</source>
+          <target state="new">Donate a lot</target>
+        </trans-unit>
+        <trans-unit id="msg_supported" translate="yes" xml:space="preserve">
+          <source>Thank you for your support to the developer!</source>
+          <target state="new">Thank you for your support to the developer!</target>
+        </trans-unit>
+        <trans-unit id="msg_support_failed" translate="yes" xml:space="preserve">
+          <source>An unknown error occurred. Anyway, thank you for your support!</source>
+          <target state="new">An unknown error occurred. Anyway, thank you for your support!</target>
+        </trans-unit>
+        <trans-unit id="msg_about_cortana_failed" translate="yes" xml:space="preserve">
+          <source>(Error: For some reason, the initialization of the Cortana voice commands on your device failed)</source>
+          <target state="new">(Error: For some reason, the initialization of the Cortana voice commands on your device failed)</target>
+        </trans-unit>
+        <trans-unit id="mathListView.Text" translate="yes" xml:space="preserve">
+          <source>Please enter the expression, or click the "≡" button to paste.</source>
+          <target state="new">Please enter the expression, or click the "≡" button to paste.</target>
+        </trans-unit>
+        <trans-unit id="command_executed" translate="yes" xml:space="preserve">
+          <source>The command has been executed!</source>
+          <target state="new">The command has been executed!</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,23 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-desktop</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+    <ApplicationTitle>Naturplay Calculator</ApplicationTitle>
+    <ApplicationId>com.naturplay.calculator</ApplicationId>
+    <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <Description>Natural mathematics, beautifully expressed.</Description>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UnoFeatures>Skia</UnoFeatures>
+    <PublishTrimmed>false</PublishTrimmed>
+    <!-- Uno's debug tools are absent from its Release dependency graph. -->
+    <NuGetLockFilePath Condition="'$(Configuration)' != 'Release' and '$(_NaturplayLockRuntime)' == ''">packages.debug.lock.json</NuGetLockFilePath>
+    <NuGetLockFilePath Condition="'$(Configuration)' != 'Release' and '$(_NaturplayLockRuntime)' != ''">packages.$(_NaturplayLockRuntime).debug.lock.json</NuGetLockFilePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <UnoIcon Include="Assets/icon.png" />
+    <ProjectReference Include="../NaturplayCalculator.Presentation/NaturplayCalculator.Presentation.csproj" />
+  </ItemGroup>
+</Project>

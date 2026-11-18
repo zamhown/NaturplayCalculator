@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "digits": 100000,
+  "oracle": "gmpy2 / MPFR, directed rounding",
+  "gmpy2": "2.2.1",
+  "mpfr": "MPFR 4.2.1",
+  "precision_bits": 400160,
+  "seconds": 0.5251950000238139,
+  "sha256": "BCEA5657B98C46EB845376665673E36A41C92490B1B85FCC3C81504B32B5935C"
+}

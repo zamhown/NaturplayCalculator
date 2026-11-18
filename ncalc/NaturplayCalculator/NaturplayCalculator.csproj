@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <UseWinUI>true</UseWinUI>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <Platform Condition="'$(Platform)' == 'AnyCPU'">x64</Platform>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <RuntimeIdentifier>win-$([System.String]::Copy('$(Platform)').ToLowerInvariant())</RuntimeIdentifier>
+    <PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
+    <PublishAot Condition="'$(Configuration)' != 'Release'">false</PublishAot>
+    <!-- Debug uses CoreCLR; keep its restore graph separate from Release AOT packs. -->
+    <NuGetLockFilePath Condition="'$(Configuration)' == 'Debug'">packages.Debug.lock.json</NuGetLockFilePath>
+    <SelfContained>true</SelfContained>
+    <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <DefaultLanguage>en</DefaultLanguage>
+    <AppxPackageSigningEnabled Condition="'$(AppxPackageSigningEnabled)' == ''">false</AppxPackageSigningEnabled>
+    <AppxAutoIncrementPackageRevision>false</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Never</AppxBundle>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <GenerateAppxPackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GenerateAppxPackageOnBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Assets\**\*.png;Svg\**\*.svg" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.4.0" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.6.5" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" Version="8.2.251219" />
+    <ProjectReference Include="..\NaturplayCalculator.Core\NaturplayCalculator.Core.csproj" />
+    <ProjectReference Include="..\NaturplayCalculator.Presentation\NaturplayCalculator.Presentation.csproj" />
+    <ProjectReference Include="..\Naturplay.Tex.WinUI\Naturplay.Tex.WinUI.csproj" />
+  </ItemGroup>
+</Project>

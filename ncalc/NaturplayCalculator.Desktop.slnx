@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="JsonParser/JsonParser.csproj" />
+  <Project Path="Naturplay.Tex/Naturplay.Tex.csproj" />
+  <Project Path="NaturplayCalculator.Core/NaturplayCalculator.Core.csproj" />
+  <Project Path="NaturplayCalculator.Presentation/NaturplayCalculator.Presentation.csproj" />
+  <Project Path="NaturplayCalculator.Desktop/NaturplayCalculator.Desktop.csproj" />
+  <Project Path="NaturplayCalculator.Tests/NaturplayCalculator.Tests.csproj" />
+</Solution>
